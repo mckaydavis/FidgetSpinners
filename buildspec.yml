@@ -2,7 +2,21 @@ version: 0.2
 
 phases:
   install:
-    - npm install --prefix ./server
-    - npm install --prefix ./client
+    commands:
+      - echo Install started on 'date'
+      - npm install --prefix ./server
+      - npm install --prefix ./client
   build:
-    - npm test --prefix ./server
+    commands:
+      - echo Install completed on 'date'
+      - echo Build started on 'date'
+      - npm test --prefix ./server
+  post_build:
+    commands:
+      - echo Build completed on 'date'
+      - zip -r server.zip ./server/*
+artifacts:
+  files:
+    - ./server.zip
+    - ./appspec.yml
+  discard-paths: yes
