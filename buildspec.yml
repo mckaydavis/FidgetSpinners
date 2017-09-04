@@ -5,7 +5,6 @@ phases:
     commands:
       - echo Install started on 'date'
       - npm install --prefix ./server
-      - npm install --prefix ./client
   build:
     commands:
       - echo Install completed on 'date'
