@@ -11,4 +11,4 @@ hooks:
   ApplicationStart:
     - location: ./start.sh
       timeout: 150
-      runas: root
+      runas: ec2-user
