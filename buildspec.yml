@@ -5,11 +5,11 @@ phases:
     commands:
       - echo Install started on 'date'
       - npm install --prefix ./server
-      - npm install --prefix ./client
   build:
     commands:
       - echo Install completed on 'date'
       - echo Build started on 'date'
+      - ./server/node_modules/.bin/jasmine init
       - npm test --prefix ./server
   post_build:
     commands:
@@ -19,4 +19,5 @@ artifacts:
   files:
     - ./server.zip
     - ./appspec.yml
+    - ./scripts/*
   discard-paths: yes
