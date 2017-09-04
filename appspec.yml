@@ -8,6 +8,7 @@ hooks:
     - location: ./unzip.sh
       timeout: 150
       runas: ec2-user
+  ApplicationStart:
     - location: ./start.sh
       timeout: 150
       runas: ec2-user

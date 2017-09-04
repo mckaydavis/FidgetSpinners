@@ -1,2 +1,2 @@
 #!/bin/bash
-(node /home/ec2-user/server/server.js)
+(cd /home/ec2-user/server && npm start)
