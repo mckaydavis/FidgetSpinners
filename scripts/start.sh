@@ -1,5 +1,4 @@
 #!/bin/bash
 source /home/ec2-user/.bash_profile
 cd /home/ec2-user/server
-npm start &
-exit 0
+npm start

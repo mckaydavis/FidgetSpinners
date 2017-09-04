@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "jasmine",
-    "start": "node server.js"
+    "start": "forever start server.js",
+    "stop": "forever stop server.js"
   },
   "author": "",
   "license": "ISC",

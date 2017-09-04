@@ -1,2 +1,4 @@
 #!/bin/bash
-pkill node
+source /home/ec2-user/.bash_profile
+cd /home/ec2-user/server
+npm stop
