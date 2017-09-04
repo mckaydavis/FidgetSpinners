@@ -2,4 +2,9 @@ version: 0.0
 os: linux
 files:
   - source: ./server.zip
-    destination: /tmp
+    destination: /tmp/
+hooks:
+  AfterInstall:
+    - location: ./unzip.sh
+      timeout: 300
+      runas: ec2-user
