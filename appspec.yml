@@ -4,6 +4,10 @@ files:
   - source: ./server.zip
     destination: /tmp/
 hooks:
+  ApplicationStop:
+    - location: ./stop.sh
+      timeout: 150
+      runas: ec2-user
   AfterInstall:
     - location: ./unzip.sh
       timeout: 150
