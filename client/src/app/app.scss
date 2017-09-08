@@ -1,5 +1,4 @@
-// http://ionicframework.com/docs/theming/
-
+// http://ionicframework.com/docs/v2/theming/
 
 // App Global Sass
 // --------------------------------------------------
@@ -14,3 +13,32 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.toolbar-title {
+  color: #fff;
+  text-align: center;
+}
+
+ion-avatar img {
+  width: 40% !important;
+  height: 40% !important;
+  margin: auto;
+}
+
+//hide scrollbar for side menu
+::-webkit-scrollbar {
+  display: none;
+}
+
+// side menu
+#menu-list {
+  .item-complex .item-content, .item {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0);
+    padding-left: 30px;
+  }
+}
+
+.menu-icon {
+  color: white;
+}
