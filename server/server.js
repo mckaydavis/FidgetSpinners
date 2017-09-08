@@ -1,7 +1,11 @@
 let express = require('express');
 
 let app = express(),
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 3000,
+    uri = process.env.MONGO_URI,
+    mongoose = require('mongoose');
+    
+mongoose.connect(uri);
 
 let routes = require('./api/routes/routes.js');
 
