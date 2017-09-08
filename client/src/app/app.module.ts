@@ -2,11 +2,17 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+import { BookmarksPage } from '../pages/bookmarks/bookmarks';
+import { HelpPage } from '../pages/help/help';
+import { SettingsPage } from '../pages/settings/settings';
+import { SearchPage } from '../pages/search/search';
+import { DivisionPage } from '../pages/division/division';
+import { TitlePage } from '../pages/title/title';
+import { ChapterPage } from '../pages/chapter/chapter';
+import { SectionPage } from '../pages/section/section';
+import { StatuePage } from '../pages/statue/statue';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -14,10 +20,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
-    TabsPage
+    BookmarksPage,
+    HelpPage,
+    SettingsPage,
+    SearchPage,
+    DivisionPage,
+    TitlePage,
+    ChapterPage,
+    SectionPage,
+    StatuePage
   ],
   imports: [
     BrowserModule,
@@ -26,10 +38,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
-    TabsPage
+    BookmarksPage,
+    HelpPage,
+    SettingsPage,
+    SearchPage,
+    DivisionPage,
+    TitlePage,
+    ChapterPage,
+    SectionPage,
+    StatuePage
   ],
   providers: [
     StatusBar,
