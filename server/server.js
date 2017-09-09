@@ -1,7 +1,15 @@
 let express = require('express');
 
 let app = express(),
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 3000,
+    uri = process.env.MONGO_URI,
+    mongoose = require('mongoose');
+    statuteModel = require('./api/models/statuteModel')
+
+mongoose.Promise = require('bluebird');
+mongoose.connect(uri, {useMongoClient: true})
+  .then(({db: {databaseName}}) => console.log(`Connected to ${databaseName}`))
+  .catch(err => console.error(err));
 
 let routes = require('./api/routes/routes.js');
 

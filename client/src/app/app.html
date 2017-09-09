@@ -1,1 +1,18 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="mainContent">
+    <ion-content id="side-menu" style="background-color:#7A5258;">
+        <div class="spacer" style="height:30px;"></div>
+        <ion-item no-lines text-center style="background-color: rgba(255, 255, 255, 0);">
+            <ion-avatar start-end>
+                <img src="assets/img/6mOCEzgCSiBxvI96yg9k_attorney_profile.jpg"/>
+            </ion-avatar>
+        </ion-item>
+        <div class="spacer" style="height:30px;"></div>
+        <ion-list no-lines id="menu-list">
+            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+                {{p.title}}
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav #mainContent [root]="rootPage"></ion-nav>

@@ -1,17 +1,37 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+            <div class="spacer" style="width:300px;height:25px;"></div>
+            <h1>HRS</h1>
+            <h5>Hawaii Revised Statutes</h5>
+            <ion-searchbar class="headbar" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)">
+            </ion-searchbar>
+        </ion-title>
+        <div class="spacer" style="width:300px;height:60px;"></div>
+    </ion-navbar>
 </ion-header>
-
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content class="home" padding id="page1">
+    <form id="home-form">
+        <div id="home-container" text-center>
+            <div class="spacer"></div>
+            <button ion-button round outline color="dark" on-click="goToDivision()">
+                Browse
+            </button>
+            <div class="spacer"></div>
+            <button ion-button round outline color="dark">
+                Laws Near You
+            </button>
+            <div class="spacer"></div>
+            <button ion-button round outline color="dark">
+                Take a picture
+            </button>
+            <div class="spacer"></div>
+            <button ion-button round outline color="dark">
+                Upload a picture
+            </button>
+        </div>
+    </form>
 </ion-content>
