@@ -1,8 +1,7 @@
 let express = require('express'),
+	services = require('../../services/services.js'),
     router  = express.Router();
 
-router.get('/', function(req, res) {
-    res.json({message: 'hooray! welcome to our api!'});
-});
+router.get('/', services.listAllStatutes)
 
 module.exports = router;
