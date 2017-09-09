@@ -14,29 +14,41 @@ let elasticService = function(Promise, elasticsearch) {
         host: process.env.ELASTIC_URI
     });
 
+    client.ping({
+        // ping usually has a 3000ms timeout 
+        requestTimeout: 1000
+    }, function (error) {
+        if (error) {
+          console.trace('elasticsearch cluster is down!');
+        } else {
+          console.log('elasticsearch client running');
+        }
+    });
+
     /**
      * @name searchDocs
      * @desc search for documents close to the given input.
-     * @param input the input to match.
-     * @param size number of hits to return.
-     * @return return the client search promise.
+     * @param req the request object.
+     * @param res the response object
      */
-    let searchDocs = (function(input, size) {
-        return client.search({
+    let searchDocs = (function(req, res) {
+        client.search({
             index: 'hrs',
             body: {
-                size: size,
+                size: req.query.size,
                 query: {
                     match: {
                         "_all": {
-                            "query": input,
+                            "query": req.query.input,
                             "fuzziness": 1, 
                             "minimum_should_match": "75%"
                         }
                     }
                 }
             }
-        })
+        }).then(function(docs) {
+            res.send(docs);
+        });
     });
 
     return {
