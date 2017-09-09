@@ -2,13 +2,12 @@
     <ion-content id="side-menu" style="background-color:#7A5258;">
         <div class="spacer" style="height:30px;"></div>
         <ion-item no-lines text-center style="background-color: rgba(255, 255, 255, 0);">
-            <ion-avatar start-end>
-                <img src="assets/img/6mOCEzgCSiBxvI96yg9k_attorney_profile.jpg"/>
-            </ion-avatar>
+            <img src="http://via.placeholder.com/400x200"/>
         </ion-item>
         <div class="spacer" style="height:30px;"></div>
         <ion-list no-lines id="menu-list">
             <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+                <ion-icon [name]="p.icon" item-left></ion-icon>
                 {{p.title}}
             </button>
         </ion-list>

@@ -19,10 +19,8 @@
   text-align: center;
 }
 
-ion-avatar img {
-  width: 40% !important;
-  height: 40% !important;
-  margin: auto;
+.bar-button-default-md {
+  color: white;
 }
 
 //hide scrollbar for side menu
@@ -39,6 +37,4 @@ ion-avatar img {
   }
 }
 
-.menu-icon {
-  color: white;
-}
+//active-highlight on menu items

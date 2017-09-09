@@ -1,12 +1,16 @@
 <ion-header>
     <ion-navbar>
-        <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-        </button>
+        <ion-toolbar>
+            <button class="home-menu" ion-button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-toolbar>
         <ion-title>
-            <div class="spacer" style="width:300px;height:25px;"></div>
+            <!--Custom Title Logo Here-->
             <h1>HRS</h1>
             <h5>Hawaii Revised Statutes</h5>
+            <!--Transition search bar to top on focus -->
+            <!--Moving to the search page-->
             <ion-searchbar class="headbar" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)">
             </ion-searchbar>
         </ion-title>
