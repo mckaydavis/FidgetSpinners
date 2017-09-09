@@ -6,16 +6,37 @@ import { ChapterPage } from '../chapter/chapter';
 import { SectionPage } from '../section/section';
 import { StatuePage } from '../statue/statue';
 import { Camera } from '@ionic-native/camera';
+import {
+  CameraPreview,
+  CameraPreviewPictureOptions,
+  CameraPreviewOptions,
+  CameraPreviewDimensions
+} from '@ionic-native/camera-preview';
+
+const cameraPreviewOpts: CameraPreviewOptions = {
+  x: 0,
+  y: 0,
+  width: window.screen.width,
+  height: window.screen.height,
+  camera: 'rear',
+  tapPhoto: true,
+  previewDrag: true,
+  toBack: true,
+  alpha: 1
+};
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [[Camera]]
+  providers: [[Camera], [CameraPreview]]
 })
+
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private camera: Camera) {
+  constructor(public navCtrl: NavController, private camera: Camera,
+    private cameraPreview: CameraPreview) {
   }
+
   goToDivision(params) {
     if (!params) params = {};
     this.navCtrl.push(DivisionPage);
@@ -31,6 +52,14 @@ export class HomePage {
   } goToStatue(params) {
     if (!params) params = {};
     this.navCtrl.push(StatuePage);
+  } goToCamera(): void {
+    this.cameraPreview.startCamera(cameraPreviewOpts).then(
+      (res) => {
+        console.log(res)
+      },
+      (err) => {
+        console.log(err)
+      });
   } askForPicture(): void {
     let cameraOptions = {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
