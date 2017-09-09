@@ -11,6 +11,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {SettingsPage} from '../pages/settings/settings';
 import {HelpPage} from '../pages/help/help';
 import {BookmarksPage} from '../pages/bookmarks/bookmarks';
+import {SettingsProvider} from "../providers/settings/settings";
 
 
 import {HomePage} from '../pages/home/home';
@@ -24,10 +25,11 @@ export class MyApp {
 
     rootPage: any = HomePage;
     activePage: any;
+    selectedTheme: String;
 
     pages: Array<{ title: string, component: any, icon: any }>;
 
-    constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private settings: SettingsProvider) {
         platform.ready().then(() => {
             statusBar.styleDefault();
             splashScreen.hide();
@@ -42,6 +44,7 @@ export class MyApp {
         ];
 
         this.activePage = this.pages[0];
+        this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);
     }
 
     openPage(page) {
