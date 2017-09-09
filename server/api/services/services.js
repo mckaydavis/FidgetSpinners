@@ -20,7 +20,7 @@ exports.listByDivision = function(req, res) {
 };
 
 exports.listByTitle = function(req, res) {
-	Statute.findOne({title: req.params.title}, function(err, statute) {
+	Statute.find({title: req.params.title}, function(err, statute) {
 		if (err)
 			res.send(err);
 		res.json(statute);
@@ -28,9 +28,11 @@ exports.listByTitle = function(req, res) {
 };
 
 exports.listByChapter = function(req, res) {
-	Statute.findOne({chapter: req.params.chapter}, function(err, statute) {
+	Statute.find({chapter: req.params.chapter}, function(err, statute) {
 		if (err)
 			res.send(err);
 		res.json(statute);
 	});
 };
+
+exports
