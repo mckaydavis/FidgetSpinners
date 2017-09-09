@@ -6,7 +6,7 @@
         </ion-item>
         <div class="spacer" style="height:30px;"></div>
         <ion-list no-lines id="menu-list">
-            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+            <button menuClose ion-item *ngFor="let p of pages" [class.activeHighlight]="checkActive(p)" (click)="openPage(p)">
                 <ion-icon [name]="p.icon" item-left></ion-icon>
                 {{p.title}}
             </button>

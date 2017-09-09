@@ -21,7 +21,9 @@ import {HomePage} from '../pages/home/home';
 })
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
+
     rootPage: any = HomePage;
+    activePage: any;
 
     pages: Array<{ title: string, component: any, icon: any }>;
 
@@ -38,10 +40,16 @@ export class MyApp {
             {title: 'Help', component: HelpPage, icon: 'ios-help-circle-outline'},
             {title: 'Settings', component: SettingsPage, icon: 'ios-settings'},
         ];
+
+        this.activePage = this.pages[0];
     }
 
     openPage(page) {
         this.nav.setRoot(page.component);
-        // active-highlight on menu items
+        this.activePage = page;
+    }
+
+    checkActive(page) {
+        return page == this.activePage;
     }
 }
