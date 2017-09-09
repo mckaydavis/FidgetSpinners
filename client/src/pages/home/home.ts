@@ -5,29 +5,68 @@ import { TitlePage } from '../title/title';
 import { ChapterPage } from '../chapter/chapter';
 import { SectionPage } from '../section/section';
 import { StatuePage } from '../statue/statue';
+import { Camera } from '@ionic-native/camera';
+import {
+  CameraPreview,
+  CameraPreviewPictureOptions,
+  CameraPreviewOptions,
+  CameraPreviewDimensions
+} from '@ionic-native/camera-preview';
+
+const cameraPreviewOpts: CameraPreviewOptions = {
+  x: 0,
+  y: 0,
+  width: window.screen.width,
+  height: window.screen.height,
+  camera: 'rear',
+  tapPhoto: true,
+  previewDrag: true,
+  toBack: true,
+  alpha: 1
+};
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [[Camera], [CameraPreview]]
 })
+
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private camera: Camera,
+    private cameraPreview: CameraPreview) {
   }
-  goToDivision(params){
+
+  goToDivision(params) {
     if (!params) params = {};
     this.navCtrl.push(DivisionPage);
-  }goToTitle(params){
+  } goToTitle(params) {
     if (!params) params = {};
     this.navCtrl.push(TitlePage);
-  }goToChapter(params){
+  } goToChapter(params) {
     if (!params) params = {};
     this.navCtrl.push(ChapterPage);
-  }goToSection(params){
+  } goToSection(params) {
     if (!params) params = {};
     this.navCtrl.push(SectionPage);
-  }goToStatue(params){
+  } goToStatue(params) {
     if (!params) params = {};
     this.navCtrl.push(StatuePage);
+  } goToCamera(): void {
+    this.cameraPreview.startCamera(cameraPreviewOpts).then(
+      (res) => {
+        console.log(res)
+      },
+      (err) => {
+        console.log(err)
+      });
+  } askForPicture(): void {
+    let cameraOptions = {
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      quality: 100,
+      encodingType: this.camera.EncodingType.PNG,
+      correctOrientation: true
+    }
   }
 }
