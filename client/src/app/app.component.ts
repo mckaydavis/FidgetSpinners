@@ -1,22 +1,46 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import {Component, ViewChild} from '@angular/core';
+import {Platform, Nav} from 'ionic-angular';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
-import { TabsPage } from '../pages/tabs/tabs';
+import {DivisionPage} from '../pages/division/division';
+import {TitlePage} from '../pages/title/title';
+import {ChapterPage} from '../pages/chapter/chapter';
+import {SectionPage} from '../pages/section/section';
+import {StatuePage} from '../pages/statue/statue';
+import {SettingsPage} from '../pages/settings/settings';
+import {HelpPage} from '../pages/help/help';
+import {BookmarksPage} from '../pages/bookmarks/bookmarks';
+
+
+import {HomePage} from '../pages/home/home';
+
 
 @Component({
-  templateUrl: 'app.html'
+    templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+    @ViewChild(Nav) nav: Nav;
+    rootPage: any = HomePage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
-  }
+    pages: Array<{ title: string, component: any }>;
+
+    constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+        platform.ready().then(() => {
+            statusBar.styleDefault();
+            splashScreen.hide();
+        });
+
+        // ngFor menu items
+        this.pages = [
+            {title: 'Home', component: HomePage},
+            {title: 'Bookmarks', component: BookmarksPage},
+            {title: 'Help', component: HelpPage},
+            {title: 'Settings', component: SettingsPage},
+        ];
+    }
+
+    openPage(page) {
+        this.nav.setRoot(page.component);
+    }
 }
