@@ -20,3 +20,9 @@ Or to emulate on iPhone (necessary for native functions like camera):
 5. in the MyApp editor go to the general tab and change the bundle identifier to 'ion.ionic.hrs'.
 6. Run it
 
+To emulate on an Android Emulator/Device:
+1. Download Android Studio https://developer.android.com/studio/index.html
+2. in the client directory, use the commands:
+$ ionic platform add android
+$ ionic build android
+$ ionic emulate android or 'ionic run android' if you have an android device plugged in
