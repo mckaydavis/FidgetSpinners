@@ -92,7 +92,7 @@ let elasticService = function(Promise, elasticsearch) {
                           "match": {
                             "chapter": {
                               "query": req.query.input,
-                              "boost":10
+                              "boost":9
                             }
                           }
                         },
@@ -100,7 +100,7 @@ let elasticService = function(Promise, elasticsearch) {
                           "match": {
                             "section": {
                               "query": req.query.input,
-                              "boost":10
+                              "boost":5
                             }
                           }
                         }
