@@ -41,39 +41,71 @@ let elasticService = function(Promise, elasticsearch) {
                 "query":{
                   "bool": {
                     "should": [
-                      {
-                        "match_phrase_prefix": {
-                          "section_text": req.query.input
-                        }
-                      },
-                      {
-                        "match": {
-                          "section_text": {
-                            "query": req.query.input,
-                            "fuzziness": 1
+                        {
+                          "match_phrase_prefix": {
+                            "section_text": {
+                              "query":req.query.input,
+                              "boost":7
+                            }
+                          }
+                        },
+                        {
+                          "match": {
+                            "section_text": {
+                              "query": req.query.input,
+                              "fuzziness": 1,
+                              "boost":5
+                            }
+                          }
+                        },
+                        {
+                            "match": {
+                              "chapter_text": {
+                                "query": req.query.input,
+                                "fuzziness": 1,
+                                "boost":5
+                              }
+                            }
+                          },
+                        {
+                          "match_phrase": {
+                            "chapter_section": {
+                              "query": req.query.input,
+                              "boost":10
+                            }
+                          }
+                        },
+                        {
+                          "match": {
+                            "text": {
+                              "query": req.query.input,
+                              "fuzziness": 1
+                            }
+                          }
+                        },
+                        {
+                          "common": {
+                            "query": req.query.input
+                          }
+                        },
+                        {
+                          "match": {
+                            "chapter": {
+                              "query": req.query.input,
+                              "boost":10
+                            }
+                          }
+                        },
+                        {
+                          "match": {
+                            "section": {
+                              "query": req.query.input,
+                              "boost":10
+                            }
                           }
                         }
-                      },
-                      {
-                        "match_phrase": {
-                          "chapter_section": req.query.input
-                        }
-                      },
-                      {
-                        "match": {
-                          "text": {
-                            "query": req.query.input,
-                            "fuzziness": 1
-                          }
-                        }
-                      },
-                      {
-                        "common": {
-                          "query": req.query.input
-                        }
-                      }
-                    ],
-                    "minimum_should_match": 1
+                      ],
+                      "minimum_should_match": 1
                   }
                 },
                 "_source": ["_id", "division", "division_text", "volume", 
