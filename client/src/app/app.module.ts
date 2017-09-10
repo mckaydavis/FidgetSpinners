@@ -16,7 +16,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { ListPage } from '../pages/list/list';
 import { TabsPage } from '../pages/tabs/tabs';
-
+import { LocationPage } from '../pages/location/location';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -38,7 +38,8 @@ import { SettingsProvider } from '../providers/settings/settings';
     TitlePage,
     ChapterPage,
     SectionPage,
-    StatuePage
+    StatuePage,
+    LocationPage
   ],
   imports: [
     BrowserModule,
@@ -56,7 +57,8 @@ import { SettingsProvider } from '../providers/settings/settings';
     TitlePage,
     ChapterPage,
     SectionPage,
-    StatuePage
+    StatuePage,
+    LocationPage
   ],
   providers: [
     StatusBar,

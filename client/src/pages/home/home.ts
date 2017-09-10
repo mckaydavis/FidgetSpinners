@@ -5,6 +5,7 @@ import {TitlePage} from '../title/title';
 import {ChapterPage} from '../chapter/chapter';
 import {SectionPage} from '../section/section';
 import {StatuePage} from '../statue/statue';
+import {LocationPage} from '../location/location';
 import {Camera} from '@ionic-native/camera';
 import {
     CameraPreview,
@@ -66,6 +67,11 @@ export class HomePage {
     goToStatue(params) {
         if (!params) params = {};
         this.navCtrl.push(StatuePage);
+    }
+
+    goToLocation(params) {
+        if (!params) params = {};
+        this.navCtrl.push(LocationPage);
     }
 
     goToCamera(): void {
