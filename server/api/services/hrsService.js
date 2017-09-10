@@ -9,7 +9,6 @@ exports.listAllStatutes = function(req, res) {
 		if (err)
 			res.send(err);
 		res.json(statute);
-		cache.put('hrs-data', statute);
 	});
 };
 

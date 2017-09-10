@@ -37,19 +37,51 @@ let elasticService = function(Promise, elasticsearch) {
         client.search({
             index: 'hrs',
             body: {
-                size: req.query.size,
-                query: {
-                    match: {
-                        "_all": {
-                            "query": req.query.input,
-                            "fuzziness": 1, 
-                            "minimum_should_match": "75%"
+                "size": req.query.size,
+                "query":{
+                  "bool": {
+                    "should": [
+                      {
+                        "match_phrase_prefix": {
+                          "section_text": req.query.input
                         }
-                    }
-                }
+                      },
+                      {
+                        "match": {
+                          "section_text": {
+                            "query": req.query.input,
+                            "fuzziness": 1
+                          }
+                        }
+                      },
+                      {
+                        "match_phrase": {
+                          "chapter_section": req.query.input
+                        }
+                      },
+                      {
+                        "match": {
+                          "text": {
+                            "query": req.query.input,
+                            "fuzziness": 1
+                          }
+                        }
+                      },
+                      {
+                        "common": {
+                          "query": req.query.input
+                        }
+                      }
+                    ],
+                    "minimum_should_match": 1
+                  }
+                },
+                "_source": ["_id", "division", "division_text", "volume", 
+                    "title", "title_text", "chapter", "chapter_text", "section", "section_text",
+                    "year"]
             }
         }).then(function(docs) {
-            res.send(docs);
+            res.send(docs.hits.hits);
         });
     });
 
