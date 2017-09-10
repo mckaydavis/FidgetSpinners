@@ -21,6 +21,7 @@ import { LocationPage } from '../pages/location/location';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SettingsProvider } from '../providers/settings/settings';
+import { BrowseProvider } from '../providers/browse/browse';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { SettingsProvider } from '../providers/settings/settings';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SettingsProvider
+    SettingsProvider,
+    BrowseProvider
   ]
 })
 export class AppModule {}

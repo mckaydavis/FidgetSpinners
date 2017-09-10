@@ -206,3 +206,5 @@ tags
 
 # End of https://www.gitignore.io/api/vim,node,macos,intellij,sublimetext,visualstudiocode
 
+*.iml
+*.xml

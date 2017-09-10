@@ -5,15 +5,12 @@
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
 
-
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
 $app-direction: ltr;
 
-
 @import "ionic.globals";
-
 
 // Shared Variables
 // --------------------------------------------------
@@ -22,8 +19,8 @@ $app-direction: ltr;
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
-
-
+$toolbar-background: #C4CEC7;
+$toolbar-text-color: #ffffff;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -34,38 +31,33 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222,
-  white:      #fff
+  primary: #488aff,
+  secondary: #32db64,
+  danger: #f53d3d,
+  light: #f4f4f4,
+  dark: #222,
+  white: #fff
 );
 
-$toolbar-background: #C4CEC7;
-$toolbar-text-color: #ffffff;
-
+// Adjacent palette green
+$palette:(
+  top: rgba(108, 144, 154, 0.3),
+  mid: rgba(126, 183, 143, 0.3),
+  mid-bottom: rgba(126, 183, 143, 0.3),
+  bottom: rgba(199, 228, 157, 0.3)
+);
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-
-
-
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
-
-
-
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
-
-
-
 
 // App Theme
 // --------------------------------------------------
@@ -77,14 +69,12 @@ $toolbar-text-color: #ffffff;
 @import "ionic.theme.default";
 @import "theme.dark";
 
-
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
 // http://ionicframework.com/docs/ionicons/
 
 @import "ionic.ionicons";
-
 
 // Fonts
 // --------------------------------------------------
