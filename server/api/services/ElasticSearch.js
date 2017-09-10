@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * API for elasticsearch.
  * @author Jonathan Robello
