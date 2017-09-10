@@ -1,14 +1,16 @@
 'use strict';
 
 let mongoose = require('mongoose'),
-	Statute = mongoose.model('Statute')
+	Statute = mongoose.model('Statute'),
+	cache = require('memory-cache');
 
 exports.listAllStatutes = function(req, res) {
-  Statute.find({}, function(err, statute) {
-    if (err)
-      res.send(err);
-    res.json(statute);
-  });
+	Statute.find({}, function(err, statute) {
+		if (err)
+			res.send(err);
+		res.json(statute);
+		cache.put('hrs-data', statute);
+	});
 };
 
 exports.listByDivision = function(req, res) {
