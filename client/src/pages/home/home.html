@@ -29,24 +29,56 @@
     <div id="home-container" text-center>
       <ion-list id="menu-list">
         <div class="spacer"></div>
-        <button ion-button round outline color="dark" on-click="goToDivision()">
-          <ion-icon name="folder-open"></ion-icon>
-          Browse
+        <button ion-button icon-left round outline color="dark" class="option-button" on-click="goToDivision()">
+          <ion-grid>
+          <ion-row>
+            <ion-col col-1>
+              <ion-icon name="ios-folder"></ion-icon>
+            </ion-col>
+            <ion-col>
+                Browse
+            </ion-col>
+          </ion-row>
+        </ion-grid>
         </button>
         <div class="spacer"></div>
-        <button ion-button round outline color="dark" on-click="goToLocation()">
-          <ion-icon name="ios-pin"></ion-icon>
-          Laws Near You
+        <button ion-button icon-left round outline color="dark" class="option-button" on-click="goToLocation()">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-1>
+              <ion-icon name="ios-pin"></ion-icon>
+            </ion-col>
+            <ion-col>
+                Near You
+            </ion-col>
+          </ion-row>
+        </ion-grid>
         </button>
         <div class="spacer"></div>
-        <button ion-button round outline color="dark" on-click="goToCamera()">
-          <ion-icon name="ios-camera"></ion-icon>
-          Take a picture
+        <button ion-button icon-left round outline color="dark" class="option-button" on-click="goToCamera()">
+          <ion-grid>
+          <ion-row>
+            <ion-col col-1>
+              <ion-icon name="ios-camera"></ion-icon>
+            </ion-col>
+            <ion-col>
+                Photograph
+            </ion-col>
+          </ion-row>
+        </ion-grid>
         </button>
         <div class="spacer"></div>
-        <button ion-button round outline color="dark" on-click="askForPicture()">
-          <ion-icon name="ios-image"></ion-icon>
-          Upload a picture
+        <button ion-button icon-left round outline color="dark" class="option-button" on-click="askForPicture()">
+          <ion-grid>
+          <ion-row>
+            <ion-col col-1>
+              <ion-icon name="ios-image"></ion-icon>
+            </ion-col>
+            <ion-col>
+                Upload
+            </ion-col>
+          </ion-row>
+        </ion-grid>
         </button>
       </ion-list>
     </div>
