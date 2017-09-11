@@ -1,0 +1,66 @@
+<div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
+  <div class="flb">
+    <div class="Aligner-item Aligner-item--top"></div>
+    <h1 class="animation-target">LOGO HERE</h1>
+    <div class="Aligner-item Aligner-item--bottom"></div>
+  </div>
+</div>
+<ion-header>
+  <ion-navbar>
+    <ion-toolbar>
+      <button class="home-menu" ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-toolbar>
+    <ion-title>
+      <!--Custom Title Logo Here-->
+      <h1>HRS</h1>
+      <h3>Hawaii Revised Statutes</h3>
+    </ion-title>
+    <!--Transition search bar to top on focus -->
+    <!--Moving to the search page-->
+    <ion-searchbar class="search" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)">
+    </ion-searchbar>
+    <div class="spacer" style="height: 30px;"></div>
+  </ion-navbar>
+</ion-header>
+<ion-content class="home" padding id="page1">
+    <ion-list id="division-list">
+      <ion-item color="none" on-click="goToTitle()" id="division-list-item16">
+        Division 1 - Government
+      </ion-item>
+      <ion-item color="none" id="division-list-item">
+        Division 2 - Business
+      </ion-item>
+      <ion-item color="none" id="division-list-item">
+        Division 3 - Property; Family
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <form id="home-form">
+    <div id="home-container" text-center>
+      <ion-list id="menu-list">
+        <div class="spacer"></div>
+        <button ion-button round outline color="dark" on-click="goToDivision()">
+          <ion-icon name="folder-open"></ion-icon>
+          Browse
+        </button>
+        <div class="spacer"></div>
+        <button ion-button round outline color="dark" on-click="goToLocation()">
+          <ion-icon name="ios-pin"></ion-icon>
+          Laws Near You
+        </button>
+        <div class="spacer"></div>
+        <button ion-button round outline color="dark" on-click="goToCamera()">
+          <ion-icon name="ios-camera"></ion-icon>
+          Take a picture
+        </button>
+        <div class="spacer"></div>
+        <button ion-button round outline color="dark" on-click="askForPicture()">
+          <ion-icon name="ios-image"></ion-icon>
+          Upload a picture
+        </button>
+      </ion-list>
+    </div>
+  </form>
+</ion-content>
