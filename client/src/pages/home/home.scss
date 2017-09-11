@@ -1,6 +1,16 @@
 
 page-home {
-
+  #hrs-title {
+    font-weight: bold;
+    font-size: 40px;
+    margin-top: 25px;
+  }
+  #hrs-subtitle {
+    font-weight: normal;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+  }
   ion-searchbar{
     width: 85%;
     margin: 0 auto;
@@ -18,7 +28,7 @@ page-home {
 
   .option-button {
     font-size: 12px;
-    font-weight: 200;
+    font-weight: normal;
     text-transform: none;
     height: 35px;
     width: 75%;

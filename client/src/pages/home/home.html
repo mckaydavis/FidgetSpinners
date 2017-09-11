@@ -1,26 +1,43 @@
-<div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
+<!-- <div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
   <div class="flb">
     <div class="Aligner-item Aligner-item--top"></div>
     <h1 class="animation-target">LOGO HERE</h1>
     <div class="Aligner-item Aligner-item--bottom"></div>
   </div>
-</div>
+</div> -->
 <ion-header>
-  <ion-navbar>
-    <button class="home-menu" ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      <!--Custom Title Logo Here-->
-      <h1>HRS</h1>
-      <h3>Hawaii Revised Statutes</h3>
-    </ion-title>
-    <!--Transition search bar to top on focus -->
-    <!--Moving to the search page-->
-    <ion-searchbar class="search" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)">
-    </ion-searchbar>
-    <div class="spacer" style="height: 30px;"></div>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-1>
+          <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-10>
+          <ion-title>
+            <!--Custom Title Logo Here-->
+            <div id="hrs-title">HRS</div>
+          </ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col text-center>
+        <div id="hrs-subtitle"> Hawaii Revised Statutes </div>
+        </ion-col>
+      </ion-row>
+      <!--Transition search bar to top on focus -->
+      <!--Moving to the search page-->
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <ion-searchbar class="search" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)">
+      </ion-searchbar>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+    </ion-grid>
+  </ion-toolbar>
 </ion-header>
 <ion-content class="home" padding id="page1">
   <form id="home-form">
