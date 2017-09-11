@@ -6,15 +6,13 @@ page-home {
     height: 20px;
   }
 
-  #home-container {
-    button {
-      height: 100%;
-      width: 60%;
-      ion-icon{
-        font-size: 3em;
-        padding-right: .5em;
-      }
-    }
+
+  .option-button {
+    font-size: 12px;
+    font-weight: 200;
+    text-transform: none;
+    height: 35px;
+    width: 75%;
   }
 
   //splash screen
