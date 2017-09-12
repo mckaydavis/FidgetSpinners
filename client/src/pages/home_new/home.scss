@@ -1,39 +1,20 @@
 
 page-home {
-  #hrs-title {
-    font-weight: bold;
-    font-size: 40px;
-    margin-top: 25px;
-  }
-  #hrs-subtitle {
-    font-weight: normal;
-    font-size: 20px;
-    color: white;
-    text-align: center;
-  }
-  ion-searchbar{
-    width: 85%;
-    margin: 0 auto;
-  }
-
-  .home-menu{
-    bottom: 3.5em;
-  }
 
   .spacer {
     width: 300px;
     height: 20px;
   }
 
-
-  .option-button {
-    font-size: 1em;
-    font-weight: 100;
-    text-transform: none;
-    height: 25%;
-    width: 75%;
-    margin: 4%;
-    padding: 3px;
+  #home-container {
+    button {
+      height: 100%;
+      width: 60%;
+      ion-icon{
+        font-size: 3em;
+        padding-right: .5em;
+      }
+    }
   }
 
   //splash screen

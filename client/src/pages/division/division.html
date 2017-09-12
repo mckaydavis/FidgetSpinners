@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton="true">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -10,8 +10,14 @@
 </ion-header>
 <ion-content padding id="page">
   <ion-list no-lines id="division-list">
-    <ion-item *ngFor="let div of divisions" color="none" (tap)="openDivision(div)" id="division-list-item16">
-        {{div.name}}
+    <ion-item color="none" on-click="goToTitle()" id="division-list-item16">
+      Division 1 - Government
+    </ion-item>
+    <ion-item color="none" id="division-list-item">
+      Division 2 - Business
+    </ion-item>
+    <ion-item color="none" id="division-list-item">
+      Division 3 - Property; Family
     </ion-item>
   </ion-list>
 </ion-content>

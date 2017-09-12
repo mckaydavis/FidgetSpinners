@@ -1,17 +1,23 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton="true">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      {{division.name}}
+      Title
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding id="title">
   <ion-list no-lines id="title-list">
-    <ion-item *ngFor="let tle of division.titles" color="none" (tap)="openTitle(tle)" id="title-list-item19">
-      {{tle.name}}
+    <ion-item color="none" on-click="goToChapter()" id="title-list-item19">
+      Title 1 - Government
+    </ion-item>
+    <ion-item color="none" id="title-list-item20">
+      Title 2 - Business
+    </ion-item>
+    <ion-item color="none" id="title-list-item21">
+      Title - Property; Family
     </ion-item>
   </ion-list>
 </ion-content>

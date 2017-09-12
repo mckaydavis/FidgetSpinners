@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-statue',
@@ -7,10 +7,7 @@ import { NavController,NavParams } from 'ionic-angular';
 })
 export class StatuePage {
 
-  private section: any = null;
-
-  constructor(public navCtrl: NavController,public navParams: NavParams) {
-    this.section=this.navParams.get('section');
+  constructor(public navCtrl: NavController) {
   }
   
 }

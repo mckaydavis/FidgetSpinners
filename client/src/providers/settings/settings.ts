@@ -7,6 +7,7 @@ export class SettingsProvider {
     private theme: BehaviorSubject<String>;
 
     constructor() {
+        // this.theme = new BehaviorSubject('dark-theme');
         this.theme = new BehaviorSubject('ionic.theme.default');
     }
 
