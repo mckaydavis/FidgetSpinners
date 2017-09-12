@@ -6,91 +6,100 @@ import {ChapterPage} from '../chapter/chapter';
 import {SectionPage} from '../section/section';
 import {StatuePage} from '../statue/statue';
 import {LocationPage} from '../location/location';
+import {SearchPage} from '../search/search';
 import {Camera} from '@ionic-native/camera';
 import {
-    CameraPreview,
-    CameraPreviewPictureOptions,
-    CameraPreviewOptions,
-    CameraPreviewDimensions
+  CameraPreview,
+  CameraPreviewPictureOptions,
+  CameraPreviewOptions,
+  CameraPreviewDimensions
 } from '@ionic-native/camera-preview';
 
 const cameraPreviewOpts: CameraPreviewOptions = {
-    x: 0,
-    y: 0,
-    width: window.screen.width,
-    height: window.screen.height,
-    camera: 'rear',
-    tapPhoto: true,
-    previewDrag: true,
-    toBack: true,
-    alpha: 1
+  x: 0,
+  y: 0,
+  width: window.screen.width,
+  height: window.screen.height,
+  camera: 'rear',
+  tapPhoto: true,
+  previewDrag: true,
+  toBack: true,
+  alpha: 1
 };
 
 @Component({
-    selector: 'page-home',
-    templateUrl: 'home.html',
-    providers: [[Camera], [CameraPreview]]
+  selector: 'page-home',
+  templateUrl: 'home.html',
+  providers: [[Camera], [CameraPreview]]
 })
 
 export class HomePage {
 
-    splash = true;
+  public searchQuery: string;
+  splash = true;
 
-    constructor(public navCtrl: NavController, private camera: Camera,
-                private cameraPreview: CameraPreview) {
-    }
+  constructor(public navCtrl: NavController, private camera: Camera,
+              private cameraPreview: CameraPreview) {
+  }
 
-    ionViewDidLoad() {
-        setTimeout(() => this.splash = false, 3000);
-    }
+  ionViewDidLoad() {
+    setTimeout(() => this.splash = false, 3000);
+  }
 
-    goToDivision(params) {
-        if (!params) params = {};
-        this.navCtrl.push(DivisionPage);
-    }
+  goToDivision(params) {
+    if (!params) params = {};
+    this.navCtrl.push(DivisionPage);
+  }
 
-    goToTitle(params) {
-        if (!params) params = {};
-        this.navCtrl.push(TitlePage);
-    }
+  goToTitle(params) {
+    if (!params) params = {};
+    this.navCtrl.push(TitlePage);
+  }
 
-    goToChapter(params) {
-        if (!params) params = {};
-        this.navCtrl.push(ChapterPage);
-    }
+  goToChapter(params) {
+    if (!params) params = {};
+    this.navCtrl.push(ChapterPage);
+  }
 
-    goToSection(params) {
-        if (!params) params = {};
-        this.navCtrl.push(SectionPage);
-    }
+  goToSection(params) {
+    if (!params) params = {};
+    this.navCtrl.push(SectionPage);
+  }
 
-    goToStatue(params) {
-        if (!params) params = {};
-        this.navCtrl.push(StatuePage);
-    }
+  goToStatue(params) {
+    if (!params) params = {};
+    this.navCtrl.push(StatuePage);
+  }
 
-    goToLocation(params) {
-        if (!params) params = {};
-        this.navCtrl.push(LocationPage);
-    }
+  goToSearch(params) {
+    if (!params) params = {};
+    this.navCtrl.push(SearchPage, {
+      query: this.searchQuery
+    });
+  }
 
-    goToCamera(): void {
-        this.cameraPreview.startCamera(cameraPreviewOpts).then(
-            (res) => {
-                console.log(res)
-            },
-            (err) => {
-                console.log(err)
-            });
-    }
+  goToLocation(params) {
+    if (!params) params = {};
+    this.navCtrl.push(LocationPage);
+  }
 
-    askForPicture(): void {
-        let cameraOptions = {
-            sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-            destinationType: this.camera.DestinationType.FILE_URI,
-            quality: 100,
-            encodingType: this.camera.EncodingType.PNG,
-            correctOrientation: true
-        }
+  goToCamera(): void {
+    this.cameraPreview.startCamera(cameraPreviewOpts).then(
+      (res) => {
+        console.log(res)
+      },
+      (err) => {
+        console.log(err)
+      });
+  }
+
+  askForPicture(): void {
+    let cameraOptions = {
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      quality: 100,
+      encodingType: this.camera.EncodingType.PNG,
+      correctOrientation: true
     }
+  }
 }
