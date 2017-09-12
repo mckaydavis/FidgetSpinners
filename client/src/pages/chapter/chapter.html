@@ -1,23 +1,17 @@
 <ion-header>
-  <ion-navbar hideBackButton="true">
+  <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Chapter
+      {{title.name}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding id="chapter">
   <ion-list no-lines id="chapter-list">
-    <ion-item color="none" on-click="goToSection()">
-      Chapter 1 - Government
-    </ion-item>
-    <ion-item color="none" id="chapter-list-item23">
-      Chapter 2 - Business
-    </ion-item>
-    <ion-item color="none" id="chapter-list-item24">
-      Chapter 3 - Property; Family
+    <ion-item *ngFor="let chp of title.chapters" color="none" (tap)="openChapter(chp)">
+      Chapter {{chp.number}}&nbsp;-&nbsp;{{chp.text}}
     </ion-item>
   </ion-list>
 </ion-content>
