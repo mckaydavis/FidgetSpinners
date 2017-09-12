@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,NavParams } from 'ionic-angular';
 import { ChapterPage } from '../chapter/chapter';
 import { SectionPage } from '../section/section';
 import { StatuePage } from '../statue/statue';
@@ -10,16 +10,15 @@ import { StatuePage } from '../statue/statue';
 })
 export class TitlePage {
 
-  constructor(public navCtrl: NavController) {
+  private division: any = null;
+  
+
+  constructor(public navCtrl: NavController,private navParams: NavParams) {
+    this.division=this.navParams.get('division');
+
   }
-  goToChapter(params){
-    if (!params) params = {};
-    this.navCtrl.push(ChapterPage);
-  }goToSection(params){
-    if (!params) params = {};
-    this.navCtrl.push(SectionPage);
-  }goToStatue(params){
-    if (!params) params = {};
-    this.navCtrl.push(StatuePage);
+
+  openTitle(tle){
+      this.navCtrl.push(ChapterPage,{division: this.division,title: tle});
   }
 }

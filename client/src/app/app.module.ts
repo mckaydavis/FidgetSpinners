@@ -18,10 +18,13 @@ import { ListPage } from '../pages/list/list';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LocationPage } from '../pages/location/location';
 
+import { AppServer } from '../services/appserver';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SettingsProvider } from '../providers/settings/settings';
 import { BrowseProvider } from '../providers/browse/browse';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,7 @@ import { BrowseProvider } from '../providers/browse/browse';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -62,6 +66,7 @@ import { BrowseProvider } from '../providers/browse/browse';
     LocationPage
   ],
   providers: [
+    AppServer,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

@@ -1,36 +1,22 @@
 <ion-header>
-  <ion-navbar hideBackButton="true">
+  <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Section
+      Chapter {{chapter.number}}&nbsp;-&nbsp;{{chapter.text}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page">
+  <ion-spinner *ngIf="loadingSections"></ion-spinner>
   <ion-list no-lines id="section-list">
     <ion-grid>
-      <ion-item color="none" id="section-list-item26">
+      <ion-item *ngFor="let sec of sections" color="none" id="section-list-item26" (tap)="openSection(sec)">
         <ion-row>
-          <ion-col col-11 class="section_text" on-click="goToStatue()">§1-2 Common law of the State; exceptions
+          <ion-col col-11 class="section_text">
+            {{sec.section_text}}
           </ion-col>
-          <ion-col col-1>
-            <ion-icon name="ios-bookmark-outline"></ion-icon>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-      <ion-item color="none" id="section-list-item26">
-        <ion-row>
-          <ion-col col-11 class="section_text">§1-2 Common law of the State; exceptions</ion-col>
-          <ion-col col-1>
-            <ion-icon name="ios-bookmark-outline"></ion-icon>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-      <ion-item color="none" id="section-list-item27">
-        <ion-row>
-          <ion-col col-11 class="section_text">§1-3 Common law of the State; exceptions</ion-col>
           <ion-col col-1>
             <ion-icon name="ios-bookmark-outline"></ion-icon>
           </ion-col>
