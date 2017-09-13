@@ -9,9 +9,9 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page8">
-  <form id="search-form">
-    <ion-searchbar placeholder={{query}} [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)"></ion-searchbar>
-  </form>
+    <ion-searchbar placeholder={{query}} [showCancelButton]="shouldShowCancel"
+                   (ionCancel)="onCancel($event)" (change)="goToSearch($event)"
+                   [(ngModel)]="query"></ion-searchbar>
 
   <ion-list no-lines id="section-list">
     <ion-grid>
