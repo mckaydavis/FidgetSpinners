@@ -1,6 +1,6 @@
 <ion-content padding id="page8">
   <form id="search-form">
-    <ion-searchbar placeholder="Search" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)"></ion-searchbar>
+    <ion-searchbar placeholder={{query}} [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)"></ion-searchbar>
   </form>
 
   <ion-list no-lines id="section-list">
