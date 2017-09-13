@@ -10,7 +10,7 @@
 </ion-header>
 <ion-content padding id="page">
   <h5 id="statue-heading3" style="text-align:center;">
-    S{{section.chapter}}-{{section.section}}&nbsp;{{section.section_text}}
+    &#167;{{section.chapter}}-{{section.section}}&nbsp;{{section.section_text}}
   </h5>
   <div id="statue-markdown" class="show-list-numbers-and-dots">
     <p *ngFor="let txt of section.text">
@@ -21,7 +21,8 @@
 <ion-footer>
   <ion-toolbar id="bottom-toolbar">
     <ion-title>
-      <ion-icon name="ios-bookmark-outline" color="dark"></ion-icon>
+      <ion-icon name="ios-bookmark-outline" color="dark" *ngIf="!bookmarked" (tap)="addToBookmark()"></ion-icon>
+      <ion-icon name="ios-bookmark-outline" color="dark" *ngIf="bookmarked" (tap)="removeFromBookmark()"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-footer>
