@@ -24,6 +24,10 @@ export class SectionPage {
     this.navCtrl.push(StatuePage,{section: sec});
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
+
   sortSections(){
     for (var a=0;a<this.sections.length;a++){
       for (var b=a+1;b<this.sections.length;b++){

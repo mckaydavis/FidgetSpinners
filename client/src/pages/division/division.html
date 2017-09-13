@@ -1,15 +1,23 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton="true">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Division
+      Browse
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page">
   <ion-list no-lines id="division-list">
+    <ion-row>
+      <ion-col col-1>
+      <ion-icon name="md-arrow-back" (click)="goBack()"></ion-icon>
+      </ion-col>
+      <ion-col col-10>
+        <h5 style="text-align: center; font-weight: normal;"> Divisions </h5>
+      </ion-col>
+    </ion-row>
     <ion-item *ngFor="let div of divisions" color="none" (tap)="openDivision(div)" id="division-list-item16">
       {{div.name}}
     </ion-item>

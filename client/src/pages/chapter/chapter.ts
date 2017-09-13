@@ -17,6 +17,10 @@ export class ChapterPage {
     this.title=this.navParams.get('title');
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
+  
   openChapter(chp){
     this.navCtrl.push(SectionPage,{chapter: chp});
   }

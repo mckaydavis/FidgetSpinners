@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton="true">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -10,7 +10,14 @@
 </ion-header>
 <ion-content padding id="page">
   <ion-list no-lines id="section-list">
-    <ion-grid>
+    <ion-row>
+      <ion-col col-1>
+      <ion-icon name="md-arrow-back" (click)="goBack()"></ion-icon>
+      </ion-col>
+      <ion-col col-10>
+        <h5 style="text-align: center; font-weight: normal;"> Sections </h5>
+      </ion-col>
+    </ion-row>
       <ion-item *ngFor="let sec of sections" color="none" id="section-list-item26" (tap)="openSection(sec)">
         <ion-row>
           <ion-col col-11 class="section_text">
@@ -21,6 +28,5 @@
           </ion-col>
         </ion-row>
       </ion-item>
-    </ion-grid>
   </ion-list>
 </ion-content>

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton="true">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -10,6 +10,14 @@
 </ion-header>
 <ion-content padding id="chapter">
   <ion-list no-lines id="chapter-list">
+    <ion-row>
+      <ion-col col-1>
+      <ion-icon name="md-arrow-back" (click)="goBack()"></ion-icon>
+      </ion-col>
+      <ion-col col-10>
+        <h5 style="text-align: center; font-weight: normal;"> Chapters </h5>
+      </ion-col>
+    </ion-row>
     <ion-item *ngFor="let chp of title.chapters" color="none" (tap)="openChapter(chp)">
       Chapter {{chp.number}}&nbsp;-&nbsp;{{chp.text}}
     </ion-item>

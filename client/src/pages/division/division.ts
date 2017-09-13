@@ -20,6 +20,10 @@ export class DivisionPage {
     this.loadLocalJson();
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
+  
   openDivision(div){
     this.navCtrl.push(TitlePage,{division: div});
   }

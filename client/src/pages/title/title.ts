@@ -18,6 +18,9 @@ export class TitlePage {
 
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
   openTitle(tle){
     this.navCtrl.push(ChapterPage,{division: this.division,title: tle});
   }
