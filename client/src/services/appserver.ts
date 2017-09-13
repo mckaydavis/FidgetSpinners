@@ -32,7 +32,12 @@ export class AppServer {
     return this.http.get(url);
   }
 
-  getSection(chapNum, secNum) {
+  getStatute(id) {
+    let url = this.BASE_URL + "id?val=" + id;
+    return this.http.get(url);
+  }
+
+  getSection(chapNum, secNum): any {
     let url = this.BASE_URL + "chapter/" + chapNum + "/section/" + secNum;
     return this.http.get(url);
   }

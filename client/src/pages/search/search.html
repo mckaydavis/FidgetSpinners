@@ -5,7 +5,7 @@
 
   <ion-list no-lines id="section-list">
     <ion-grid>
-      <ion-item *ngFor="let sec of sections" color="none" id="section-list-item26" (tap)="openSection(sec)">
+      <ion-item *ngFor="let sec of sections" color="none" id="section-list-item26" (tap)="openSection(sec, sec._id)" attr.id={{sec._id}}>
         <ion-row>
           <ion-col col-11 class="section_text">
             S{{sec._source.chapter}}-{{sec._source.section}}&nbsp;{{sec._source.section_text}}

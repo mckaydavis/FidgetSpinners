@@ -13,7 +13,7 @@ export class SearchPage {
   private query: string;
   private sections: any[] = null;
   private loadingSections: boolean = false;
-  private section: any;
+  private section: any = null;
 
   constructor(public navCtrl: NavController, private navParams: NavParams, private server: AppServer) {
     this.query = navParams.get("query");
@@ -21,15 +21,19 @@ export class SearchPage {
     this.loadSections();
   }
 
-  openSection(sec) {
-    this.server.getSection(sec._source.chapter, sec._source.section)
-      .map(response => response.json()).subscribe(result => this.section =result);
+  openSection(sec, id) {
+    var self = this;
+    (self.server).getStatute(id)
+      .map(response => response.json()).subscribe(result => {
+      self.section = result
+    });
 
-    if(this.section != null) {
-      this.section = JSON.parse((JSON.stringify(this.section))
-        .substring(1, (JSON.stringify(this.section)).length-1));
-      this.navCtrl.push(StatuePage, {section: this.section});
-    }
+    setTimeout(function () {
+      this.section = self.section[0];
+      console.log(self.section)
+      self.navCtrl.push(StatuePage, {section: this.section});
+    }, 200);
+
   }
 
   sortSections() {
