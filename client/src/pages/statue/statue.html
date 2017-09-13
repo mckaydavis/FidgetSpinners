@@ -21,7 +21,8 @@
 <ion-footer>
   <ion-toolbar id="bottom-toolbar">
     <ion-title>
-      <ion-icon name="ios-bookmark-outline" color="dark"></ion-icon>
+      <ion-icon name="ios-bookmark-outline" color="dark" *ngIf="!bookmarked" (tap)="addToBookmark()"></ion-icon>
+      <ion-icon name="ios-bookmark-outline" color="dark" *ngIf="bookmarked" (tap)="removeFromBookmark()"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-footer>
