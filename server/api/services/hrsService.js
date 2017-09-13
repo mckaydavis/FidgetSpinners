@@ -62,3 +62,11 @@ exports.listByChapterSection = function(req, res) {
 		res.json(statute);
 	});
 };
+
+exports.getById = function(req, res) {
+	Statute.find({_id: req.query.val}, function(err, statute) {
+		if (err)
+			res.send(err);
+		res.json(statute);
+	});
+};

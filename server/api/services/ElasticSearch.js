@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * API for elasticsearch.
+ * Service for elasticsearch.
  * @author Jonathan Robello
  */
 
@@ -109,16 +109,51 @@ let elasticService = function(Promise, elasticsearch) {
                   }
                 },
                 "_source": ["_id", "division", "division_text", "volume", 
-                    "title", "title_text", "chapter", "chapter_text", "section", "section_text",
-                    "year"]
+                    "title", "title_text", "chapter", "chapter_text", "section", 
+                    "section_text", "year"]
             }
         }).then(function(docs) {
-            res.send(docs.hits.hits);
+            res.json(docs.hits.hits);
+        }).catch(function(response) {
+            console.log(response);
+        });
+    });
+
+    /**
+     * @name getChapterSection
+     * @desc Gets a single statute by its chapter and section.
+     * @param req the request object.
+     * @param res the response object.
+     */
+    let getChapterSection = (function(req, res) {
+      client.search({
+          index: 'hrs',
+          body: {
+              "size": 10,
+                "query":{
+                  "bool": {
+                    "filter": [
+                      { "term": { "chapter": req.query.chapter }},
+                      { "term": { "section": req.query.section }}
+                    ]
+                  }
+                },
+                "_source": [
+                    "_id", "division", "division_text", "volume", 
+                    "title", "title_text", "chapter", "chapter_text", "section", 
+                    "section_text", "year"
+              ]
+            }
+        }).then(function(docs) {
+            res.json(docs.hits.hits);
+        }).catch(function(res){
+            console.log(res);
         });
     });
 
     return {
-        searchDocs: searchDocs
+        searchDocs: searchDocs,
+        getChapterSection: getChapterSection
     }
 };
 
