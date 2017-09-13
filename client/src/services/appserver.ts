@@ -1,6 +1,6 @@
 /* * * ./app/comments/services/comment.service.ts * * */
 // Imports
-import {Injectable}     from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 //import {Observable} from 'rxjs/Rx';
 //Import RxJs required methods
@@ -38,7 +38,58 @@ export class AppServer {
   }
 
   getSearchQuery(query, length) {
-    let url = this.BASE_URL + "statutes/search?input=" + query + "&size="+length;
+    let url = this.BASE_URL + "statutes/search?input=" + query + "&size=" + length;
     return this.http.get(url);
+  }
+
+  isInBookmark(sect) {
+    let js = (<any>window).localStorage.hrsSectionBookmark;
+    if (!js) {
+      js = [];
+    } else {
+      js = JSON.parse(js);
+    }
+    for (var a = 0; a < js.length; a++) {
+      if (js[a].section == sect.section && js[a].chapter == sect.chapter) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  addToBookmark(sect) {
+    let js = (<any>window).localStorage.hrsSectionBookmark;
+    if (!js) {
+      js = [];
+    } else {
+      js = JSON.parse(js);
+    }
+    js.push(sect);
+    (<any>window).localStorage.hrsSectionBookmark = JSON.stringify(js);
+  }
+
+  removeFromBookmark(sect) {
+    let js = (<any>window).localStorage.hrsSectionBookmark;
+    if (!js) {
+      js = [];
+    } else {
+      js = JSON.parse(js);
+    }
+    for (var a = 0; a < js.length; a++) {
+      if (js[a].section == sect.section && js[a].chapter == sect.chapter) {
+        js.splice(a, 1);
+      }
+    }
+    (<any>window).localStorage.hrsSectionBookmark = JSON.stringify(js);
+  }
+
+  getAllBookmarks() {
+    let js = (<any>window).localStorage.hrsSectionBookmark;
+    if (!js) {
+      js = [];
+    } else {
+      js = JSON.parse(js);
+    }
+    return js;
   }
 }
