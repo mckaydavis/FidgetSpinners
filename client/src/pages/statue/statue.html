@@ -6,11 +6,6 @@
     <ion-title>
       {{section.title_text}}
     </ion-title>
-    <ion-buttons end>
-      <button class="bookmark" ion-button icon-only>
-        <ion-icon ios="ios-bookmark" md="md-bookmark"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page">
@@ -24,9 +19,9 @@
   </div>
 </ion-content>
 <ion-footer>
-  <ion-toolbar>
+  <ion-toolbar id="bottom-toolbar">
     <ion-title>
-      <ion-icon name="ios-bookmark-outline"></ion-icon>
+      <ion-icon name="ios-bookmark-outline" color="dark"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-footer>
