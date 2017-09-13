@@ -2,4 +2,20 @@
   <form id="search-form">
     <ion-searchbar placeholder="Search" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)"></ion-searchbar>
   </form>
+
+  <ion-list no-lines id="section-list">
+    <ion-grid>
+      <ion-item *ngFor="let sec of sections" color="none" id="section-list-item26" (tap)="openSection(sec)">
+        <ion-row>
+          <ion-col col-11 class="section_text">
+            S{{sec._source.chapter}}-{{sec._source.section}}&nbsp;{{sec._source.section_text}}
+          </ion-col>
+          <ion-col col-1>
+            <ion-icon name="ios-bookmark-outline"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-grid>
+  </ion-list>
+
 </ion-content>
