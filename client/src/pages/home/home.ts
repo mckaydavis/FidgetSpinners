@@ -76,6 +76,7 @@ export class HomePage {
     this.navCtrl.push(SearchPage, {
       query: this.searchQuery
     });
+    this.searchQuery = "";
   }
 
   goToLocation(params) {
