@@ -37,8 +37,8 @@ export class AppServer {
     return this.http.get(url);
   }
 
-  getSearchQuery(query) {
-    let url = this.BASE_URL + "statutes/search?input=" + query + "&size=10";
+  getSearchQuery(query, length) {
+    let url = this.BASE_URL + "statutes/search?input=" + query + "&size="+length;
     return this.http.get(url);
   }
 }

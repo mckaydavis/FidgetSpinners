@@ -68,7 +68,7 @@ export class SearchPage {
 
   loadSections() {
     this.loadingSections = true;
-    (this.server).getSearchQuery(this.query).subscribe(
+    (this.server).getSearchQuery(this.query, 10).subscribe(
       res => this.sectionsSuccess(res), err => this.sectionsFailure(err)
     );
   }
