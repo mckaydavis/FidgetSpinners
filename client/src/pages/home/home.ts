@@ -8,12 +8,14 @@ import {StatuePage} from '../statue/statue';
 import {LocationPage} from '../location/location';
 import {SearchPage} from '../search/search';
 import {Camera, CameraOptions} from '@ionic-native/camera';
+import {cloudVisionService} from '../../services/cloudVisionService'
 import {
   CameraPreview,
   CameraPreviewPictureOptions,
   CameraPreviewOptions,
   CameraPreviewDimensions
 } from '@ionic-native/camera-preview';
+
 
 const cameraPreviewOpts: CameraPreviewOptions = {
   x: 0,
@@ -38,8 +40,11 @@ export class HomePage {
   public searchQuery: string;
   splash = true;
 
-  constructor(public navCtrl: NavController, private camera: Camera,
-              private cameraPreview: CameraPreview) {
+  constructor(
+    public navCtrl: NavController, 
+    private camera: Camera,
+    private cameraPreview: CameraPreview,
+    private vision: cloudVisionService) {
   }
 
   ionViewDidLoad() {
@@ -96,7 +101,11 @@ export class HomePage {
 
     this.camera.getPicture(options).then((imageData) => {
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-
+      this.vision.getText(imageData).subscribe((result) => {
+        
+      }, err => {
+        console.log("Error trying to get image data")
+      });
     }, (err) => {
       console.log("Error trying to open camera.")
     });

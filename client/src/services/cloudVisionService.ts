@@ -22,7 +22,7 @@ export class cloudVisionService {
           ]
         }
       ]
-    }
+    };
 
     return this.http.post('https://vision.googleapis.com/v1/images:annotate?key=' + environment.CV_API_KEY, body);
   }
