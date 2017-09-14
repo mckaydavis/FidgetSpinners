@@ -20,8 +20,8 @@ export class SectionPage {
     this.loadSections();
   }
 
-  openSection(sec){
-    this.navCtrl.push(StatuePage,{section: sec});
+  openSection(sec,idx){
+    this.navCtrl.push(StatuePage,{section: sec,sectionsList: this.sections, sectionIndex: idx});
   }
 
   goBack(){
@@ -49,7 +49,10 @@ export class SectionPage {
       let jsonRes=res.json();
       console.log(JSON.stringify(jsonRes));
       for (var a=0;a<jsonRes.length;a++){
-        this.sections.push(jsonRes[a]);
+        let js=jsonRes[a];
+        js.bookmarked=this.server.isInBookmark(js);
+        this.sections.push(js);
+
       }
       this.sortSections();
     }catch(e){
