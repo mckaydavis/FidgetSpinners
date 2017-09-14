@@ -7,7 +7,7 @@ import {SectionPage} from '../section/section';
 import {StatuePage} from '../statue/statue';
 import {LocationPage} from '../location/location';
 import {SearchPage} from '../search/search';
-import {Camera} from '@ionic-native/camera';
+import {Camera, CameraOptions} from '@ionic-native/camera';
 import {
   CameraPreview,
   CameraPreviewPictureOptions,
@@ -85,13 +85,21 @@ export class HomePage {
   }
 
   goToCamera(): void {
-    this.cameraPreview.startCamera(cameraPreviewOpts).then(
-      (res) => {
-        console.log(res)
-      },
-      (err) => {
-        console.log(err)
-      });
+    const options: CameraOptions = {
+      quality: 100,
+      targetHeight: 500,
+      targetWidth: 500,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.PNG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+
+    }, (err) => {
+      console.log("Error trying to open camera.")
+    });
   }
 
   askForPicture(): void {
