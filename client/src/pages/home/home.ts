@@ -9,6 +9,8 @@ import {LocationPage} from '../location/location';
 import {SearchPage} from '../search/search';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import {cloudVisionService} from '../../services/cloudVisionService'
+import {AppServer} from '../../services/appserver'
+
 import {
   CameraPreview,
   CameraPreviewPictureOptions,
@@ -44,7 +46,8 @@ export class HomePage {
     public navCtrl: NavController, 
     private camera: Camera,
     private cameraPreview: CameraPreview,
-    private vision: cloudVisionService) {
+    private vision: cloudVisionService,
+    private server: AppServer) {
   }
 
   ionViewDidLoad() {
@@ -100,12 +103,8 @@ export class HomePage {
     }
 
     this.camera.getPicture(options).then((imageData) => {
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.vision.getText(imageData).subscribe((result) => {
-        
-      }, err => {
-        console.log("Error trying to get image data")
-      });
+      //let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.processImage(imageData);
     }, (err) => {
       console.log("Error trying to open camera.")
     });
@@ -120,4 +119,39 @@ export class HomePage {
       correctOrientation: true
     }
   }
+
+  processImage(imageData): void {
+
+    this.vision.getText(imageData).subscribe((result) => {
+      var textAnnotations = result.json().responses["textAnnotations"];
+
+      if (textAnnotations == undefined) {
+        alert("Could not find anything");
+      } else {
+        this.parseText(textAnnotations[0].description);
+      }
+
+      }, err => {
+        console.log("Error trying to get image data");
+      });
+  }
+
+  parseText(text): void {
+    let matchedText = text.match(/(\d+(\-\d+))/g);
+    let section = "";
+
+    if (matchedText.length > 0) {
+      let chapterSection = matchedText[0].split('-');
+
+      this.server.getSection(chapterSection[0], chapterSection[1])
+        .map(response => response.json()).subscribe(result => {
+          section = result;
+          this.navCtrl.push(StatuePage, {section: section[0]});
+        });
+    } else {
+      alert("Could not find anything parsing text.");
+    }
+
+  }
+
 }
