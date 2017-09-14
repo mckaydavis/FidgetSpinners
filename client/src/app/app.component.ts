@@ -2,12 +2,6 @@ import {Component, ViewChild} from '@angular/core';
 import {Platform, Nav} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-
-// import {DivisionPage} from '../pages/division/division';
-// import {TitlePage} from '../pages/title/title';
-// import {ChapterPage} from '../pages/chapter/chapter';
-// import {SectionPage} from '../pages/section/section';
-// import {StatuePage} from '../pages/statue/statue';
 import {SettingsPage} from '../pages/settings/settings';
 import {HelpPage} from '../pages/help/help';
 import {BookmarksPage} from '../pages/bookmarks/bookmarks';
@@ -32,7 +26,8 @@ export class MyApp {
     constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private settings: SettingsProvider) {
         platform.ready().then(() => {
             statusBar.styleDefault();
-            splashScreen.hide();
+            // splashScreen.hide();
+            splashScreen.show();
         });
 
         // ngFor menu items

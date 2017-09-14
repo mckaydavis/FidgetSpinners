@@ -12,10 +12,7 @@ import { TitlePage } from '../pages/title/title';
 import { ChapterPage } from '../pages/chapter/chapter';
 import { SectionPage } from '../pages/section/section';
 import { StatuePage } from '../pages/statue/statue';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { ListPage } from '../pages/list/list';
-import { TabsPage } from '../pages/tabs/tabs';
 import { LocationPage } from '../pages/location/location';
 
 import { AppServer } from '../services/appserver';
@@ -30,10 +27,7 @@ import { HttpModule } from '@angular/http';
   declarations: [
     MyApp,
     HomePage,
-    AboutPage,
-    ContactPage,
     ListPage,
-    TabsPage,
     BookmarksPage,
     HelpPage,
     SettingsPage,
