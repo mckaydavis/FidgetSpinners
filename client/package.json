@@ -61,7 +61,8 @@
             "cordova-plugin-camera-preview": {},
             "cordova-plugin-geolocation": {
                 "GEOLOCATION_USAGE_DESCRIPTION": " "
-            }
+            },
+            "cordova-plugin-camera": {}
         },
         "platforms": [
             "android",
