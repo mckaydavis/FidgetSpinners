@@ -11,25 +11,20 @@ import {Response} from '@angular/http';
 export class SearchPage {
 
   private query: string;
-  private originalQuery: string;
   private sections: any[] = null;
   private loadingSections: boolean = false;
   private section: any = null;
 
   constructor(public navCtrl: NavController, private navParams: NavParams, private server: AppServer) {
     this.query = navParams.get("query");
-    this.originalQuery = this.query;
-    this.sections = [];
     this.loadSections();
   }
 
-  goToSearch(params) {
-
-    if (!params) params = {};
-    this.navCtrl.push(SearchPage, {
-      query: this.query
-    });
-    this.query = this.originalQuery;
+  goToSearch() {
+    this.loadingSections = true;
+    (this.server).getSearchQuery(this.query, 10).subscribe(
+      res => this.sectionsSuccess(res), err => this.sectionsFailure(err)
+    );
   }
 
   openSection(sec, id) {
@@ -61,7 +56,7 @@ export class SearchPage {
   }
 
   sectionsSuccess(res: Response) {
-    console.log("sectionsSuccess");
+    this.sections = [];
     this.loadingSections = false;
     try {
       let that = this;
