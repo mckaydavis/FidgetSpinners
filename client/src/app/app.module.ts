@@ -19,7 +19,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LocationPage } from '../pages/location/location';
 
 import { AppServer } from '../services/appserver';
-
+import { cloudVisionService} from '../services/cloudVisionService'
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SettingsProvider } from '../providers/settings/settings';
@@ -67,6 +67,7 @@ import { HttpModule } from '@angular/http';
   ],
   providers: [
     AppServer,
+    cloudVisionService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
