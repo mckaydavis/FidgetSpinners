@@ -123,12 +123,12 @@ export class HomePage {
   processImage(imageData): void {
 
     this.vision.getText(imageData).subscribe((result) => {
-      var textAnnotations = result.json().responses["textAnnotations"];
+      var textAnnotations = result.json().responses[0].fullTextAnnotation.text;
 
       if (textAnnotations == undefined) {
-        alert("Could not find anything");
+        alert("No text found on image.")
       } else {
-        this.parseText(textAnnotations[0].description);
+        this.parseText(textAnnotations);
       }
 
       }, err => {
