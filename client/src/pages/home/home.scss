@@ -1,5 +1,10 @@
 
 page-home {
+
+  #menu-list ion-icon {
+    color: #4C4C4C;
+  }
+
   #hrs-title {
     font-weight: bold;
     font-size: 40px;
@@ -25,7 +30,6 @@ page-home {
     height: 20px;
   }
 
-
   .option-button {
     font-size: 1em;
     font-weight: 100;
@@ -33,6 +37,10 @@ page-home {
     height: 25%;
     width: 75%;
     margin: 4%;
-    padding: 3px;
+    padding: 7px;
+  }
+
+  .list-md {
+    margin: 0;
   }
 }
