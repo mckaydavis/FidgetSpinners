@@ -11,9 +11,11 @@ import {Response} from '@angular/http';
 export class SearchPage {
 
   private query: string;
+  private allSections: any[] = null;
   private sections: any[] = null;
   private loadingSections: boolean = false;
   private section: any = null;
+  private jsonResLength: number;
 
   constructor(public navCtrl: NavController, private navParams: NavParams, private server: AppServer) {
     this.query = navParams.get("query");
@@ -22,9 +24,18 @@ export class SearchPage {
 
   goToSearch() {
     this.loadingSections = true;
-    (this.server).getSearchQuery(this.query, 10).subscribe(
+    (this.server).getSearchQuery(this.query, 100).subscribe(
       res => this.sectionsSuccess(res), err => this.sectionsFailure(err)
     );
+  }
+
+  loadMore() {
+    if (this.sections.length + 10 < this.jsonResLength) {
+      let oldSectionsLength = this.sections.length;
+      for (var i = 0; i < 10; i++) {
+        this.sections[oldSectionsLength + i] = this.allSections[oldSectionsLength + i]
+      }
+    }
   }
 
   openSection(sec, id) {
@@ -36,20 +47,24 @@ export class SearchPage {
 
     setTimeout(function () {
       this.section = self.section[0];
-      console.log(self.section)
       self.navCtrl.push(StatuePage, {section: this.section});
     }, 200);
 
   }
 
   sectionsSuccess(res: Response) {
+    this.allSections = [];
     this.sections = [];
     this.loadingSections = false;
     try {
       let that = this;
       let jsonRes = res.json();
-      for (var a = 0; a < jsonRes.length; a++) {
-        this.sections.push(jsonRes[a]);
+      this.jsonResLength = jsonRes.length;
+      for (var a = 0; a < this.jsonResLength; a++) {
+        this.allSections.push(jsonRes[a]);
+        if (a < 15) {
+          this.sections[a] = this.allSections[a];
+        }
       }
     } catch (e) {
       alert("Exception: " + e.message);
@@ -64,7 +79,7 @@ export class SearchPage {
 
   loadSections() {
     this.loadingSections = true;
-    (this.server).getSearchQuery(this.query, 10).subscribe(
+    (this.server).getSearchQuery(this.query, 100).subscribe(
       res => this.sectionsSuccess(res), err => this.sectionsFailure(err)
     );
   }
