@@ -1,2 +1,2 @@
-# hrs-statutes
-hrs statutes app
+# hrs-app
+Hawaii revised statutes app.
