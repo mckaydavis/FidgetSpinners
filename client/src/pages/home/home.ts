@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
 import {DivisionPage} from '../division/division';
 import {TitlePage} from '../title/title';
 import {ChapterPage} from '../chapter/chapter';
@@ -12,29 +11,18 @@ import {cloudVisionService} from '../../services/cloudVisionService'
 import {AppServer} from '../../services/appserver'
 
 import {
-  CameraPreview,
-  CameraPreviewPictureOptions,
-  CameraPreviewOptions,
-  CameraPreviewDimensions
-} from '@ionic-native/camera-preview';
+  NavController, 
+  LoadingController, 
+  AlertController
+  } from 'ionic-angular';
 
 
-const cameraPreviewOpts: CameraPreviewOptions = {
-  x: 0,
-  y: 0,
-  width: window.screen.width,
-  height: window.screen.height,
-  camera: 'rear',
-  tapPhoto: true,
-  previewDrag: true,
-  toBack: true,
-  alpha: 1
-};
+
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [[Camera], [CameraPreview]]
+  providers: [[Camera]]
 })
 
 export class HomePage {
@@ -43,8 +31,9 @@ export class HomePage {
   splash = true;
 
   constructor(public navCtrl: NavController,
+              public loadingCtrl: LoadingController,
+              public alertCtrl: AlertController,
               private camera: Camera,
-              private cameraPreview: CameraPreview,
               private vision: cloudVisionService,
               private server: AppServer) {
   }
@@ -109,29 +98,33 @@ export class HomePage {
     });
   }
 
-  askForPicture(): void {
-    let cameraOptions = {
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      quality: 100,
-      encodingType: this.camera.EncodingType.PNG,
-      correctOrientation: true
-    }
-  }
-
   processImage(imageData): void {
+    let loading = this.loadingCtrl.create({
+      content: 'Processing image...'
+    });
 
-    this.vision.getText(imageData).subscribe((result) => {
-      var textAnnotations = result.json().responses[0].fullTextAnnotation.text;
+    let alert = this.alertCtrl.create({
+      title: 'Error Processing Image.',
+      message: 'Could not process text. Try taking a clearer picture.',
+      buttons: ['Dismiss']
+    });
 
-      if (textAnnotations == undefined) {
-        alert("No text found on image.")
-      } else {
-        this.parseText(textAnnotations);
-      }
+    loading.present().then(() => {
+      this.vision.getText(imageData).subscribe((result) => {
+        var textAnnotations = result.json().responses[0].fullTextAnnotation;
 
-    }, err => {
-      console.log("Error trying to get image data");
+        if (textAnnotations == undefined) {
+          loading.dismiss();
+          alert.present()
+          
+        } else {
+          this.parseText(textAnnotations.text);
+          loading.dismiss();
+        }
+
+      }, err => {
+        console.log("Error trying to get image data");
+      });
     });
   }
 
@@ -140,6 +133,7 @@ export class HomePage {
     let section = "";
     if (matchedText != null) {
       let chapterSection = matchedText[0].split('-');
+
       this.server.getSection(chapterSection[0], chapterSection[1])
         .map(response => response.json()).subscribe(result => {
         section = result;
@@ -149,5 +143,18 @@ export class HomePage {
       alert("Could not find anything parsing text.");
     }
   }
+
+  presentLoadingText() {
+  let loading = this.loadingCtrl.create({
+    spinner: 'dots',
+    content: 'Processing image...'
+  });
+
+  loading.present();
+
+  setTimeout(() => {
+    loading.dismiss();
+  }, 5000);
+}
 
 }

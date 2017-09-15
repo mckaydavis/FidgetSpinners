@@ -27,7 +27,7 @@ export class MyApp {
         platform.ready().then(() => {
             statusBar.styleDefault();
             // splashScreen.hide();
-            splashScreen.show();
+            splashScreen.hide();
         });
 
         // ngFor menu items
