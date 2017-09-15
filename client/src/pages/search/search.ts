@@ -43,13 +43,12 @@ export class SearchPage {
     (self.server).getStatute(id)
       .map(response => response.json()).subscribe(result => {
       self.section = result
-    });
 
-    setTimeout(function () {
+     setTimeout(function () {
       this.section = self.section[0];
       self.navCtrl.push(StatuePage, {section: this.section});
     }, 200);
-
+    });
   }
 
   sectionsSuccess(res: Response) {
