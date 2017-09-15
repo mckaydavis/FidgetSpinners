@@ -42,19 +42,6 @@ export class SearchPage {
 
   }
 
-  sortSections() {
-    for (var a = 0; a < this.sections.length; a++) {
-      for (var b = a + 1; b < this.sections.length; b++) {
-        let seca = this.sections[a];
-        let secb = this.sections[b];
-        if (parseFloat(seca.section) > parseFloat(secb.section)) {
-          this.sections[a] = secb;
-          this.sections[b] = seca;
-        }
-      }
-    }
-  }
-
   sectionsSuccess(res: Response) {
     this.sections = [];
     this.loadingSections = false;
@@ -64,7 +51,6 @@ export class SearchPage {
       for (var a = 0; a < jsonRes.length; a++) {
         this.sections.push(jsonRes[a]);
       }
-      this.sortSections();
     } catch (e) {
       alert("Exception: " + e.message);
     }
