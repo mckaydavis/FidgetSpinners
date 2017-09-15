@@ -52,4 +52,7 @@ export class StatuePage {
     }
   }
 
+  goBack(){
+    this.navCtrl.pop()
+  }
 }

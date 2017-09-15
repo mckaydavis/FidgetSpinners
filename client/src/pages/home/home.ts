@@ -42,12 +42,11 @@ export class HomePage {
   public searchQuery: string;
   splash = true;
 
-  constructor(
-    public navCtrl: NavController, 
-    private camera: Camera,
-    private cameraPreview: CameraPreview,
-    private vision: cloudVisionService,
-    private server: AppServer) {
+  constructor(public navCtrl: NavController,
+              private camera: Camera,
+              private cameraPreview: CameraPreview,
+              private vision: cloudVisionService,
+              private server: AppServer) {
   }
 
   ionViewDidLoad() {
@@ -123,35 +122,32 @@ export class HomePage {
   processImage(imageData): void {
 
     this.vision.getText(imageData).subscribe((result) => {
-      var textAnnotations = result.json().responses["textAnnotations"];
+      var textAnnotations = result.json().responses[0].fullTextAnnotation.text;
 
       if (textAnnotations == undefined) {
-        alert("Could not find anything");
+        alert("No text found on image.")
       } else {
-        this.parseText(textAnnotations[0].description);
+        this.parseText(textAnnotations);
       }
 
-      }, err => {
-        console.log("Error trying to get image data");
-      });
+    }, err => {
+      console.log("Error trying to get image data");
+    });
   }
 
   parseText(text): void {
     let matchedText = text.match(/(\d+(\-\d+))/g);
     let section = "";
-
-    if (matchedText.length > 0) {
+    if (matchedText != null) {
       let chapterSection = matchedText[0].split('-');
-
       this.server.getSection(chapterSection[0], chapterSection[1])
         .map(response => response.json()).subscribe(result => {
-          section = result;
-          this.navCtrl.push(StatuePage, {section: section[0]});
-        });
+        section = result;
+        this.navCtrl.push(StatuePage, {section: section[0]});
+      });
     } else {
       alert("Could not find anything parsing text.");
     }
-
   }
 
 }

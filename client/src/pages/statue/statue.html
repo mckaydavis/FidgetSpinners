@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton="true">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -9,9 +9,14 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page">
-  <h5 id="statue-heading3" style="text-align:center;">
-    &#167;{{section.chapter}}-{{section.section}}&nbsp;{{section.section_text}}
-  </h5>
+  <ion-row>
+    <ion-col col-1>
+        <ion-icon name="md-arrow-back" (click)="goBack()"></ion-icon>
+    </ion-col>
+    <ion-col col-10 style="text-align: center;">
+     <b> &#167;{{section.chapter}}-{{section.section}}&nbsp;{{section.section_text}} </b>
+    </ion-col>
+  </ion-row>
   <div id="statue-markdown" class="show-list-numbers-and-dots">
     <p *ngFor="let txt of section.text">
       {{txt}}
@@ -20,15 +25,25 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar id="bottom-toolbar">
-    <div style="float:left;font-size:22px;" (tap)="movePrev()">
-      <ion-icon name="arrow-dropleft"></ion-icon>
-    </div>
-    <ion-title>
-      <ion-icon name="ios-bookmark-outline" color="dark" *ngIf="!section.bookmarked" (tap)="addToBookmark()"></ion-icon>
-      <ion-icon name="ios-bookmark" color="dark" style="color:#454545;" *ngIf="section.bookmarked" (tap)="removeFromBookmark()"></ion-icon>
-    </ion-title>
-    <div style="float:right;font-size:22px;">
-      <ion-icon name="arrow-dropright" (tap)="moveNext()"></ion-icon>
-    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-1>
+          <button style="background-color: white; float: left;" icon-only (tap)="movePrev()">
+            <ion-icon name="ios-arrow-back"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-10>
+          <ion-title>
+            <ion-icon name="ios-bookmark-outline" color="dark" *ngIf="!section.bookmarked" (tap)="addToBookmark()"></ion-icon>
+            <ion-icon name="ios-bookmark" color="dark" style="color:#454545;" *ngIf="section.bookmarked" (tap)="removeFromBookmark()"></ion-icon>
+          </ion-title>
+        </ion-col>
+        <ion-col col-1>
+          <button style="background-color: white; float: right;" icon-only (tap)="moveNext()">
+            <ion-icon name="ios-arrow-forward"></ion-icon>
+          </button>
+      </ion-col>
+    </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-footer>
