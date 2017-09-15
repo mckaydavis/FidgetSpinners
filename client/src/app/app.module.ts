@@ -12,6 +12,7 @@ import { TitlePage } from '../pages/title/title';
 import { ChapterPage } from '../pages/chapter/chapter';
 import { SectionPage } from '../pages/section/section';
 import { StatuePage } from '../pages/statue/statue';
+import { LinkStatuePage } from '../pages/link-statue/link-statue';
 import { ListPage } from '../pages/list/list';
 import { LocationPage } from '../pages/location/location';
 
@@ -37,6 +38,7 @@ import { HttpModule } from '@angular/http';
     ChapterPage,
     SectionPage,
     StatuePage,
+    LinkStatuePage,
     LocationPage
   ],
   imports: [
@@ -57,6 +59,7 @@ import { HttpModule } from '@angular/http';
     ChapterPage,
     SectionPage,
     StatuePage,
+    LinkStatuePage,
     LocationPage
   ],
   providers: [
