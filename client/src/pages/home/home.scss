@@ -1,5 +1,10 @@
-
 page-home {
+  background-image: url('../assets/img/foilage_black.jpg');
+  background-size: 100%;
+
+  .searchbar-md {
+
+  }
 
   #menu-list ion-icon {
     color: #4C4C4C;
@@ -12,20 +17,34 @@ page-home {
   }
 
   #hrs-title {
-    font-weight: bold;
+    font-weight: 100;
     font-size: 40px;
-    margin-top: 25px;
   }
+
+  .toolbar-title {
+    color: #fff;
+    text-align: center;
+    font-size: 100px;
+    font-weight: 300;
+
+    .subtitle {
+      font-size: 17%;
+      font-weight: 400;
+      margin: 0;
+    }
+  }
+
   #hrs-subtitle {
     font-weight: normal;
     font-size: 20px;
     color: white;
     text-align: center;
   }
-  ion-searchbar{
+
+/*  ion-searchbar{
     width: 85%;
     margin: 0 auto;
-  }
+  }*/
 
   .home-menu{
     bottom: 3.5em;
