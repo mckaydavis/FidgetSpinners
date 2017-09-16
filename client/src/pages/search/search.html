@@ -5,12 +5,14 @@
     </button>
     <ion-title>
       <ion-searchbar placeholder={{query}} [showCancelButton]="shouldShowCancel"
-                 (ionCancel)="onCancel($event)" (ionChange)="goToSearch($event)"
-                 [(ngModel)]="query"></ion-searchbar>
+                     (ionCancel)="onCancel($event)" (ionChange)="goToSearch($event)"
+                     [(ngModel)]="query"></ion-searchbar>
     </ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content padding id="page8">
+
   <ion-list no-lines id="section-list">
     <ion-grid>
       <ion-item *ngFor="let sec of sections;let idx=index;" color="none" id="section-list-item26"
@@ -28,14 +30,9 @@
     </ion-grid>
   </ion-list>
 
-  <ion-footer style="position:relative; background-image: none; background-color: #000;">
-    <!-- have to make toolbar white-->
-    <ion-toolbar style="position:absolute; background-image: none; background-color: #000;"
-                 (click)="loadMore()">
-      <ion-title>
-        See More
-      </ion-title>
-    </ion-toolbar>
-  </ion-footer>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

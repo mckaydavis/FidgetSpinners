@@ -29,13 +29,15 @@ export class SearchPage {
     );
   }
 
-  loadMore() {
+  loadMore(infiniteScroll) {
+    console.log("hi");
     if (this.sections.length + 10 < this.jsonResLength) {
       let oldSectionsLength = this.sections.length;
       for (var i = 0; i < 10; i++) {
         this.sections[oldSectionsLength + i] = this.allSections[oldSectionsLength + i]
       }
     }
+    infiniteScroll.complete();
   }
 
   openSection(sec, id) {
