@@ -16,9 +16,6 @@ import {
   AlertController
   } from 'ionic-angular';
 
-
-
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -123,7 +120,8 @@ export class HomePage {
         }
 
       }, err => {
-        console.log("Error trying to get image data");
+        loading.dismiss()
+        alert.present()
       });
     });
   }
@@ -149,6 +147,8 @@ export class HomePage {
         } else {
           alert.present()
         }
+      }, err => {
+        alert.present()
       });
     } else {
       alert.present()
