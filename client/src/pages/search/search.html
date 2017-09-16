@@ -4,15 +4,13 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Search
+      <ion-searchbar placeholder={{query}} [showCancelButton]="shouldShowCancel"
+                 (ionCancel)="onCancel($event)" (ionChange)="goToSearch($event)"
+                 [(ngModel)]="query"></ion-searchbar>
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page8">
-  <ion-searchbar placeholder={{query}} [showCancelButton]="shouldShowCancel"
-                 (ionCancel)="onCancel($event)" (ionChange)="goToSearch($event)"
-                 [(ngModel)]="query"></ion-searchbar>
-
   <ion-list no-lines id="section-list">
     <ion-grid>
       <ion-item *ngFor="let sec of sections;let idx=index;" color="none" id="section-list-item26"
