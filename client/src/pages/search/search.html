@@ -1,13 +1,13 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-title>
+        Search
+      </ion-title>
+    <ion-buttons end>
+    <button style="background: transparent;" icon-only ion-button menuToggle>
+      <ion-icon style="color: white;" name="menu"></ion-icon>
     </button>
-    <ion-title>
-      <ion-searchbar placeholder={{query}} [showCancelButton]="shouldShowCancel"
-                     (ionCancel)="onCancel($event)" (ionChange)="goToSearch($event)"
-                     [(ngModel)]="query"></ion-searchbar>
-    </ion-title>
+  </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -15,6 +15,11 @@
 
   <ion-list no-lines id="section-list">
     <ion-grid>
+      <ion-row>
+            <ion-searchbar placeholder={{query}} [showCancelButton]="shouldShowCancel"
+                     (ionCancel)="onCancel($event)" (ionChange)="goToSearch($event)"
+                     [(ngModel)]="query"></ion-searchbar>
+      </ion-row>
       <ion-item *ngFor="let sec of sections;let idx=index;" color="none" id="section-list-item26"
                 attr.id={{sec._id}} (tap)="openSection(sec, sec._id,idx)">
         <ion-row>

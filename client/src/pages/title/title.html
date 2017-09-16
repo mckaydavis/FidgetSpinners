@@ -1,20 +1,21 @@
 <ion-header>
-  <ion-navbar hideBackButton="true">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+  <ion-navbar>
+      <ion-title>
+        {{division.name}}
+      </ion-title>
+    <ion-buttons end>
+    <button style="background: transparent;" icon-only ion-button menuToggle>
+      <ion-icon style="color: white;" name="menu"></ion-icon>
     </button>
-    <ion-title>
-      {{division.name}}
-    </ion-title>
+  </ion-buttons>
   </ion-navbar>
 </ion-header>
+
+
 <ion-content padding id="title">
   <ion-list id="title-list">
    <ion-row>
-      <ion-col col-1>
-      <ion-icon name="md-arrow-back" (click)="goBack()"></ion-icon>
-      </ion-col>
-      <ion-col col-10>
+      <ion-col text-center>
         <h5 style="text-align: center; font-weight: normal;"> Titles </h5>
       </ion-col>
     </ion-row>
