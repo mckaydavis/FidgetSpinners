@@ -91,7 +91,6 @@ export class HomePage {
     }
 
     this.camera.getPicture(options).then((imageData) => {
-      //let base64Image = 'data:image/jpeg;base64,' + imageData;
       this.processImage(imageData);
     }, (err) => {
       console.log("Error trying to open camera.")
@@ -100,12 +99,13 @@ export class HomePage {
 
   processImage(imageData): void {
     let loading = this.loadingCtrl.create({
-      content: 'Processing image...'
+      spinner: 'dots',
+      content: 'Processing image...',
     });
 
     let alert = this.alertCtrl.create({
       title: 'Error Processing Image.',
-      message: 'Could not process text. Try taking a clearer picture.',
+      message: 'Could not process image. Try taking a clearer picture.',
       buttons: ['Dismiss']
     });
 
@@ -129,32 +129,31 @@ export class HomePage {
   }
 
   parseText(text): void {
+    let alert = this.alertCtrl.create({
+      title: 'Error Processing Image.',
+      message: 'Could not process image. Try taking a clearer picture.',
+      buttons: ['Dismiss']
+    });
     let matchedText = text.match(/(\d+(\-\d+))/g);
     let section = "";
+
     if (matchedText != null) {
       let chapterSection = matchedText[0].split('-');
 
       this.server.getSection(chapterSection[0], chapterSection[1])
         .map(response => response.json()).subscribe(result => {
         section = result;
-        this.navCtrl.push(StatuePage, {section: section[0]});
+
+        if (section[0] != undefined) {
+          this.navCtrl.push(StatuePage, {section: section[0]});
+        } else {
+          alert.present()
+        }
       });
     } else {
-      alert("Could not find anything parsing text.");
+      alert.present()
     }
   }
 
-  presentLoadingText() {
-  let loading = this.loadingCtrl.create({
-    spinner: 'dots',
-    content: 'Processing image...'
-  });
-
-  loading.present();
-
-  setTimeout(() => {
-    loading.dismiss();
-  }, 5000);
-}
 
 }
