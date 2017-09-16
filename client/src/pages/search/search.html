@@ -4,39 +4,35 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Search
+      <ion-searchbar placeholder={{query}} [showCancelButton]="shouldShowCancel"
+                     (ionCancel)="onCancel($event)" (ionChange)="goToSearch($event)"
+                     [(ngModel)]="query"></ion-searchbar>
     </ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content padding id="page8">
-  <ion-searchbar placeholder={{query}} [showCancelButton]="shouldShowCancel"
-                 (ionCancel)="onCancel($event)" (change)="goToSearch($event)"
-                 [(ngModel)]="query"></ion-searchbar>
 
   <ion-list no-lines id="section-list">
     <ion-grid>
       <ion-item *ngFor="let sec of sections;let idx=index;" color="none" id="section-list-item26"
-                (tap)="openSection(sec, sec._id,idx)" attr.id={{sec._id}}>
+                attr.id={{sec._id}} (tap)="openSection(sec, sec._id,idx)">
         <ion-row>
           <ion-col col-11 class="section_text">
             S{{sec._source.chapter}}-{{sec._source.section}}&nbsp;{{sec._source.section_text}}
           </ion-col>
           <ion-col col-1>
-            <ion-icon name="ios-bookmark-outline"></ion-icon>
+            <ion-icon name="ios-bookmark-outline" *ngIf="!sec.bookmarked"></ion-icon>
+            <ion-icon name="ios-bookmark" style="color:#454545;" *ngIf="sec.bookmarked"></ion-icon>
           </ion-col>
         </ion-row>
       </ion-item>
     </ion-grid>
   </ion-list>
 
-  <ion-footer style="position:relative; background-image: none; background-color: #000;">
-    <!-- have to make toolbar white-->
-    <ion-toolbar style="position:absolute; background-image: none; background-color: #000;"
-                 (click)="loadMore()">
-      <ion-title>
-        See More
-      </ion-title>
-    </ion-toolbar>
-  </ion-footer>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

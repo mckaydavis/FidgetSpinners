@@ -29,13 +29,15 @@ export class SearchPage {
     );
   }
 
-  loadMore() {
+  loadMore(infiniteScroll) {
+    console.log("hi");
     if (this.sections.length + 10 < this.jsonResLength) {
       let oldSectionsLength = this.sections.length;
       for (var i = 0; i < 10; i++) {
         this.sections[oldSectionsLength + i] = this.allSections[oldSectionsLength + i]
       }
     }
+    infiniteScroll.complete();
   }
 
   openSection(sec, id) {
@@ -56,11 +58,12 @@ export class SearchPage {
     this.sections = [];
     this.loadingSections = false;
     try {
-      let that = this;
       let jsonRes = res.json();
       this.jsonResLength = jsonRes.length;
       for (var a = 0; a < this.jsonResLength; a++) {
-        this.allSections.push(jsonRes[a]);
+        let js=jsonRes[a];
+        js.bookmarked=this.server.isInBookmark(js);
+        this.allSections.push(js);
         if (a < 15) {
           this.sections[a] = this.allSections[a];
         }
