@@ -18,7 +18,7 @@
     </ion-col>
   </ion-row>
   <div id="statue-markdown" class="show-list-numbers-and-dots">
-    <p *ngFor="let txt of section.text" [innerHTML]="sanitize(txt)">
+    <p *ngFor="let txt of section.allTexts" [innerHTML]="sanitize(txt)">
       {{txt}}
     </p>
   </div>

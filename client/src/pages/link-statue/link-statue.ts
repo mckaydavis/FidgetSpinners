@@ -10,9 +10,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class LinkStatuePage {
 
   private section: any = null;
-  
+
   constructor(private sanitizer:DomSanitizer,public navCtrl: NavController,public navParams: NavParams,public server: AppServer) {
     this.section=this.navParams.get('section');
+    this.section.allTexts=[];
     this.createHyperlinksOfSection();
   }
 
@@ -40,11 +41,13 @@ export class LinkStatuePage {
   }
 
   createHyperlinksOfSection(){
-    let regEx=/§\d+-\d+/;
+    let self=this;
+    let regEx=/§\d+-\d+(\.\d+)*/;
+    this.section.allTexts=[];
     for (var a=0;a<this.section.text.length;a++){
       let txt=this.section.text[a];
-      txt=txt.replace(regEx,"<a chapter-hyper=\"$&\" onclick=\"callFromLink('$&');\">$&</a>");
-      this.section.text[a]=txt;
+      txt=txt.replace(regEx,"<a class='link-statue' chapter-hyper=\"$&\" onclick=\"callFromLink('$&');\">$&</a>");
+      this.section.allTexts.push(txt);
     }
   }
 

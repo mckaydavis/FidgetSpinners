@@ -19,6 +19,7 @@ export class StatuePage {
 
   constructor(private sanitizer:DomSanitizer,public navCtrl: NavController,public navParams: NavParams,public server: AppServer) {
     this.section=this.navParams.get('section');
+    this.section.allTexts=[];
     if (this.navParams.get('sectionsList')){
       this.sectionsList=this.navParams.get('sectionsList');
       this.currentSecIndex=this.navParams.get('sectionIndex');
@@ -47,6 +48,7 @@ export class StatuePage {
       let jsonRes=result.json();
       self.section=jsonRes[0];
       self.section.bookmarked=self.server.isInBookmark(self.section);
+      self.section.allTexts=[];
       self.createHyperlinksOfSection();
     });
   }
@@ -60,12 +62,10 @@ export class StatuePage {
   }
 
   shoutMe(chp){
-    //alert("shoutMe: "+chp);
     let vals=chp.split("-");
     if (vals.length>1){
       let chap=vals[0].substring(1);
       let sec=vals[1];
-      //this.navCtrl.push(LinkStatuePage,{chapter: chap,section: sec});
       this.loadChapterSection(chap,sec);
     }
   }
@@ -75,11 +75,12 @@ export class StatuePage {
   }
 
   createHyperlinksOfSection(){
-    let regEx=/§\d+-\d+/;
+    let regEx=/§\d+-\d+(\.\d+)*/;
+    this.section.allTexts=[];
     for (var a=0;a<this.section.text.length;a++){
       let txt=this.section.text[a];
-      txt=txt.replace(regEx,"<a chapter-hyper=\"$&\" onclick=\"callFromLink('$&');\">$&</a>");
-      this.section.text[a]=txt;
+      txt=txt.replace(regEx,"<a class='link-statue' chapter-hyper=\"$&\" onclick=\"callFromLink('$&');\">$&</a>");
+      this.section.allTexts.push(txt);
     }
   }
 
