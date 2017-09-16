@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { TitlePage } from '../title/title';
-import { ChapterPage } from '../chapter/chapter';
-import { SectionPage } from '../section/section';
-import { StatuePage } from '../statue/statue';
 import { AppServer } from '../../services/appserver';
 import { Response } from '@angular/http';
 
@@ -29,11 +26,8 @@ export class DivisionPage {
   }
 
   addMealSuccess(res: Response){
-    console.log("addMealSuccess");
     try{
-      let that=this;
       let jsonRes=res.json();
-      //console.log(JSON.stringify(jsonRes));
       for (var a=0;a<jsonRes.length;a++){
         this.divisions.push(jsonRes[a]);
       }
@@ -43,7 +37,6 @@ export class DivisionPage {
   }
 
   addMealFailure(error: any){
-    console.log("addMealFailure");
     alert('Error: '+JSON.stringify(error));
   }
 

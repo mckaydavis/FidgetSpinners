@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController,NavParams } from 'ionic-angular';
 import { AppServer } from '../../services/appserver';
 import { DomSanitizer } from '@angular/platform-browser';
-import {ElementRef, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'page-statue',
@@ -18,7 +17,6 @@ export class LinkStatuePage {
   }
 
   loadChapterSection(chap,sec){
-    console.log("loadChapterSection: "+chap+","+sec);
     let self = this;
     (self.server).getSection(chap,sec).subscribe(result => {
         console.log("got section");
@@ -29,12 +27,10 @@ export class LinkStatuePage {
   }
 
   shoutMe(chp){
-    //alert("shoutMe: "+chp);
     let vals=chp.split("-");
     if (vals.length>1){
       let chap=vals[0].substring(1);
       let sec=vals[1];
-      //this.navCtrl.push(LinkStatuePage,{chapter: chap,section: sec});
       this.loadChapterSection(chap,sec);
     }
   }
@@ -44,13 +40,10 @@ export class LinkStatuePage {
   }
 
   createHyperlinksOfSection(){
-    console.log("createHyperlinksOfSection");
-    let self=this;
     let regEx=/§\d+-\d+/;
     for (var a=0;a<this.section.text.length;a++){
       let txt=this.section.text[a];
       txt=txt.replace(regEx,"<a chapter-hyper=\"$&\" onclick=\"callFromLink('$&');\">$&</a>");
-      //console.log(txt);
       this.section.text[a]=txt;
     }
   }

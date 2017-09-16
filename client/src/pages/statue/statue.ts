@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController,NavParams } from 'ionic-angular';
 import { AppServer } from '../../services/appserver';
 import { DomSanitizer } from '@angular/platform-browser';
-import {ElementRef, ViewChild} from '@angular/core';
 import {LinkStatuePage } from '../link-statue/link-statue';
 
 @Component({
@@ -17,7 +16,6 @@ export class StatuePage {
   private currentSecIndex: number = 0;
   private isFromSearch: boolean = false;
 
-  //@ViewChild('statue-markdown') statueContainer: ElementRef;
 
   constructor(private sanitizer:DomSanitizer,public navCtrl: NavController,public navParams: NavParams,public server: AppServer) {
     this.section=this.navParams.get('section');
@@ -44,11 +42,9 @@ export class StatuePage {
   }
 
   loadSection(id){
-    console.log("loadSection: "+id);
     let self = this;
     (self.server).getStatute(id).subscribe(result => {
       let jsonRes=result.json();
-      console.log(JSON.stringify(jsonRes));
       self.section=jsonRes[0];
       self.section.bookmarked=self.server.isInBookmark(self.section);
       self.createHyperlinksOfSection();
@@ -56,12 +52,9 @@ export class StatuePage {
   }
 
   loadChapterSection(chap,sec){
-    console.log("loadChapterSection: "+chap+","+sec);
     let self = this;
     (self.server).getSection(chap,sec).subscribe(result => {
-      console.log("got section");
       let jsonRes=result.json();
-      console.log(JSON.stringify(jsonRes));
       self.navCtrl.push(LinkStatuePage,{section: jsonRes[0]});
     });
   }
@@ -82,12 +75,10 @@ export class StatuePage {
   }
 
   createHyperlinksOfSection(){
-    let self=this;
     let regEx=/§\d+-\d+/;
     for (var a=0;a<this.section.text.length;a++){
       let txt=this.section.text[a];
       txt=txt.replace(regEx,"<a chapter-hyper=\"$&\" onclick=\"callFromLink('$&');\">$&</a>");
-      //console.log(txt);
       this.section.text[a]=txt;
     }
   }

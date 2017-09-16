@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController,NavParams } from 'ionic-angular';
 import { SectionPage } from '../section/section';
-import { StatuePage } from '../statue/statue';
 
 @Component({
   selector: 'page-chapter',

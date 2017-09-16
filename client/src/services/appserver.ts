@@ -1,7 +1,7 @@
 /* * * ./app/comments/services/comment.service.ts * * */
 // Imports
 import {Injectable} from '@angular/core';
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import {Http} from '@angular/http';
 //import {Observable} from 'rxjs/Rx';
 //Import RxJs required methods
 import 'rxjs/add/operator/map';
@@ -19,16 +19,12 @@ export class AppServer {
   }
 
   getLocalJsonTree() {
-    console.log("getLocalJsonTree");
-
     let url = "assets/hrstree.txt";
-    console.log(url);
     return this.http.get(url);
   }
 
   getSectionsForChapter(chapNum) {
     let url = this.BASE_URL + "chapter/" + chapNum + "/section/";
-    console.log(url);
     return this.http.get(url);
   }
 

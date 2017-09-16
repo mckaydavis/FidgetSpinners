@@ -42,12 +42,9 @@ export class SectionPage {
   }
 
   sectionsSuccess(res: Response){
-    console.log("sectionsSuccess");
     this.loadingSections=false;
     try{
-      let that=this;
       let jsonRes=res.json();
-      console.log(JSON.stringify(jsonRes));
       for (var a=0;a<jsonRes.length;a++){
         let js=jsonRes[a];
         js.bookmarked=this.server.isInBookmark(js);
@@ -61,9 +58,8 @@ export class SectionPage {
   }
 
   sectionsFailure(error: any){
-    console.log("sectionsFailure");
     this.loadingSections=false;
-    alert('Error: '+JSON.stringify(error));
+    alert('Error: Couldnt load sections');
   }
 
   loadSections(){
