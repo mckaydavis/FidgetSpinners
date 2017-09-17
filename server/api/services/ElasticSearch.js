@@ -129,7 +129,7 @@ let elasticService = function(Promise, elasticsearch) {
       client.search({
           index: 'hrs',
           body: {
-              "size": 10,
+              "size": 1,
                 "query":{
                   "bool": {
                     "filter": [
@@ -150,6 +150,33 @@ let elasticService = function(Promise, elasticsearch) {
             console.log(res);
         });
     });
+
+    /**
+     * @name getNearestLaws
+     * @desc Get the nearest laws based on lat and long.
+     * @param req the request object.
+     * @param the response object.
+     */
+    /*let getNearestLaws = function(req, res) {
+        client.search({
+            index: 'hrs-locations',
+            body: {
+                "size": req.query.size,
+                "query": {
+                    "bool": {
+                        "must" : {
+                            "match_all": {}
+                        },
+                        "filter"
+                    }
+                }
+            }
+        }).then(function(docs) {
+            res.json(docs.hits.hits);
+        }).catch(function(res) {
+            console.log(res);
+        });
+    }*/
 
     return {
         searchDocs: searchDocs,
