@@ -18,3 +18,9 @@ The very core of our application is a search engine, but in addition to that, we
 Opening the app, you are first welcomed with the homepage:
 
 ![homepage](./docs/photos/homepage.png)
+
+From there, you are able to do a general search, browse the HRS, take a picture, or search nearby laws.
+### Search
+### Browse
+### Taking a Pic
+### Searching nearby Laws
