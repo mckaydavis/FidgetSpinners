@@ -26,10 +26,11 @@
         "@ionic-native/geolocation": "^4.2.1",
         "@ionic-native/splash-screen": "3.12.1",
         "@ionic-native/status-bar": "3.12.1",
+        "@ionic-native/web-intent": "^4.2.1",
         "@ionic/storage": "2.0.1",
+        "com-darryncampbell-cordova-plugin-intent": "0.0.14",
         "cordova-android": "^6.2.3",
         "cordova-custom-config": "^4.0.2",
-        "cordova-ios": "^4.5.0",
         "cordova-plugin-camera": "~2.4.1",
         "cordova-plugin-camera-preview": "^0.9.0",
         "cordova-plugin-compat": "^1.1.0",
@@ -64,12 +65,15 @@
             "cordova-plugin-geolocation": {
                 "GEOLOCATION_USAGE_DESCRIPTION": " "
             },
-            "cordova-plugin-camera": {},
-            "cordova-custom-config": {}
+            "cordova-plugin-camera": {
+                "CAMERA_USAGE_DESCRIPTION": " ",
+                "PHOTOLIBRARY_USAGE_DESCRIPTION": " "
+            },
+            "cordova-custom-config": {},
+            "com-darryncampbell-cordova-plugin-intent": {}
         },
         "platforms": [
-            "android",
-            "ios"
+            "android"
         ]
     }
 }

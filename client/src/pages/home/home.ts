@@ -155,7 +155,7 @@ export class HomePage {
                 long = resp.coords.longitude,
                 statute = section[0]["chapter"] + '-' + section[0]["section"];
 
-            this.location.postLocation(lat, long, statute);
+            this.location.postLocation(lat, long, statute).subscribe();
 
           }).catch((error) =>{
             console.log('error getting location', error);
