@@ -17,4 +17,4 @@ The very core of our application is a search engine, but in addition to that, we
 ## Running the app
 Opening the app, you are first welcomed with the homepage:
 
-![homepage](https://github.com/jlarobello/hrs-app/raw/master/docs/photos/homepage1.png)
+![homepage](./docs/photos/homepage.png)
