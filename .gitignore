@@ -204,5 +204,10 @@ tags
 !.vscode/extensions.json
 .history
 
+### Ruby and Gems
+_site/
+Gemfile
+Gemfile.lock
+
 # End of https://www.gitignore.io/api/vim,node,macos,intellij,sublimetext,visualstudiocode
 
