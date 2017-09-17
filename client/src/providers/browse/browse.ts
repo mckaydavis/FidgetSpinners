@@ -14,7 +14,6 @@ export class BrowseProvider {
   data: any;
 
   constructor(public http: Http) {
-    console.log('Hello BrowseProvider Provider');
     this.data = null;
   }
 

@@ -30,7 +30,6 @@ export class SearchPage {
   }
 
   loadMore(infiniteScroll) {
-    console.log("hi");
     if (this.sections.length + 10 < this.jsonResLength) {
       let oldSectionsLength = this.sections.length;
       for (var i = 0; i < 10; i++) {
@@ -74,7 +73,6 @@ export class SearchPage {
   }
 
   sectionsFailure(error: any) {
-    console.log("sectionsFailure");
     this.loadingSections = false;
     alert('Error: ' + JSON.stringify(error));
   }

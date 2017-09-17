@@ -20,9 +20,7 @@ export class LinkStatuePage {
   loadChapterSection(chap,sec){
     let self = this;
     (self.server).getSection(chap,sec).subscribe(result => {
-        console.log("got section");
         let jsonRes=result.json();
-        console.log(JSON.stringify(jsonRes));
         self.navCtrl.push(LinkStatuePage,{section: jsonRes[0]});
     });
   }
