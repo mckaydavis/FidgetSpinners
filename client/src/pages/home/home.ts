@@ -6,8 +6,10 @@ import {SectionPage} from '../section/section';
 import {StatuePage} from '../statue/statue';
 import {LocationPage} from '../location/location';
 import {SearchPage} from '../search/search';
+import { Geolocation } from '@ionic-native/geolocation'
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import {cloudVisionService} from '../../services/cloudVisionService'
+import {locationService} from '../../services/locationService'
 import {AppServer} from '../../services/appserver'
 
 import {
@@ -19,7 +21,7 @@ import {
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [[Camera]]
+  providers: [[Camera], [Geolocation]]
 })
 
 export class HomePage {
@@ -32,7 +34,9 @@ export class HomePage {
               public alertCtrl: AlertController,
               private camera: Camera,
               private vision: cloudVisionService,
-              private server: AppServer) {
+              private location: locationService,
+              private server: AppServer,
+              private geolocation: Geolocation) {
   }
 
   ionViewDidLoad() {
@@ -143,14 +147,32 @@ export class HomePage {
         section = result;
 
         if (section[0] != undefined) {
+
+          // Post the location of this found section to the REST API
+          // for use with Near You functionality
+          this.geolocation.getCurrentPosition().then((resp) => {
+            let lat = resp.coords.latitude,
+                long = resp.coords.longitude,
+                statute = section[0]["chapter"] + '-' + section[0]["section"];
+
+            this.location.postLocation(lat, long, statute);
+
+          }).catch((error) =>{
+            console.log('error getting location', error);
+          });
+
+          // Open the found section
           this.navCtrl.push(StatuePage, {section: section[0]});
         } else {
+          // Statute does not exist on the server
           alert.present()
         }
       }, err => {
+        // Error retrieving from the REST API
         alert.present()
       });
     } else {
+      // No statute was found in the text
       alert.present()
     }
   }

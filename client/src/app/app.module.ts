@@ -18,6 +18,7 @@ import { LocationPage } from '../pages/location/location';
 
 import { AppServer } from '../services/appserver';
 import { cloudVisionService} from '../services/cloudVisionService'
+import { locationService } from '../services/locationService'
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SettingsProvider } from '../providers/settings/settings';
@@ -65,6 +66,7 @@ import { HttpModule } from '@angular/http';
   providers: [
     AppServer,
     cloudVisionService,
+    locationService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
