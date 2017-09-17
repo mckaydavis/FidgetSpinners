@@ -13,6 +13,7 @@ export class SectionPage {
   private chapter: any = null;
   private sections: any[] = null;
   private loadingSections: boolean = false;
+  private hasSections = true;
 
   constructor(public navCtrl: NavController,private navParams: NavParams,private server: AppServer) {
     this.chapter=this.navParams.get('chapter');
@@ -42,9 +43,10 @@ export class SectionPage {
   }
 
   sectionsSuccess(res: Response){
-    this.loadingSections=false;
+    this.hasSections=true;
     try{
       let jsonRes=res.json();
+      if (jsonRes.length == 0) this.hasSections = false;
       for (var a=0;a<jsonRes.length;a++){
         let js=jsonRes[a];
         js.bookmarked=this.server.isInBookmark(js);
@@ -52,6 +54,7 @@ export class SectionPage {
 
       }
       this.sortSections();
+      this.loadingSections=false;
     }catch(e){
       alert("Exception: "+e.message);
     }
