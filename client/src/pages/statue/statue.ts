@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
-import { NavController,NavParams } from 'ionic-angular';
-import { AppServer } from '../../services/appserver';
-import { DomSanitizer } from '@angular/platform-browser';
-import {LinkStatuePage } from '../link-statue/link-statue';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {AppServer} from '../../services/appserver';
+import {DomSanitizer} from '@angular/platform-browser';
+import {LinkStatuePage} from '../link-statue/link-statue';
+import {WebIntent} from '@ionic-native/web-intent';
+
 
 @Component({
   selector: 'page-statue',
@@ -17,107 +19,111 @@ export class StatuePage {
   private isFromSearch: boolean = false;
 
 
-  constructor(private sanitizer:DomSanitizer,public navCtrl: NavController,public navParams: NavParams,public server: AppServer) {
-    this.section=this.navParams.get('section');
-    this.section.allTexts=[];
-    if (this.navParams.get('sectionsList')){
-      this.sectionsList=this.navParams.get('sectionsList');
-      this.currentSecIndex=this.navParams.get('sectionIndex');
+  constructor(private wIntent: WebIntent, private sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, public server: AppServer) {
+    this.section = this.navParams.get('section');
+    this.section.allTexts = [];
+    if (this.navParams.get('sectionsList')) {
+      this.sectionsList = this.navParams.get('sectionsList');
+      this.currentSecIndex = this.navParams.get('sectionIndex');
     }
-    if (this.navParams.get('isFromSearch')){
-      this.isFromSearch=true;
+    if (this.navParams.get('isFromSearch')) {
+      this.isFromSearch = true;
     }
 
-    this.bookmarked=this.server.isInBookmark(this.section);
-    if (this.isFromSearch){
+    this.bookmarked = this.server.isInBookmark(this.section);
+    if (this.isFromSearch) {
       this.loadSection(this.section._id);
-    }else{
+    } else {
       this.createHyperlinksOfSection();
     }
 
-    (<any>window).statueRef=this;
+    (<any>window).statueRef = this;
   }
 
-  goBack(){
+  goBack() {
     this.navCtrl.pop();
   }
 
-  loadSection(id){
+  loadSection(id) {
     let self = this;
     (self.server).getStatute(id).subscribe(result => {
-      let jsonRes=result.json();
-      self.section=jsonRes[0];
-      self.section.bookmarked=self.server.isInBookmark(self.section);
-      self.section.allTexts=[];
+      let jsonRes = result.json();
+      self.section = jsonRes[0];
+      self.section.bookmarked = self.server.isInBookmark(self.section);
+      self.section.allTexts = [];
       self.createHyperlinksOfSection();
     });
   }
 
-  loadChapterSection(chap,sec){
+  loadChapterSection(chap, sec) {
     let self = this;
-    (self.server).getSection(chap,sec).subscribe(result => {
-      let jsonRes=result.json();
-      self.navCtrl.push(LinkStatuePage,{section: jsonRes[0]});
+    (self.server).getSection(chap, sec).subscribe(result => {
+      let jsonRes = result.json();
+      self.navCtrl.push(LinkStatuePage, {section: jsonRes[0]});
     });
   }
 
-  shoutMe(chp){
-    let vals=chp.split("-");
-    if (vals.length>1){
-      let chap=vals[0].substring(1);
-      let sec=vals[1];
-      this.loadChapterSection(chap,sec);
+  shoutMe(chp) {
+    let vals = chp.split("-");
+    if (vals.length > 1) {
+      let chap = vals[0].substring(1);
+      let sec = vals[1];
+      this.loadChapterSection(chap, sec);
     }
   }
 
-  sanitize(url:string){
+  sanitize(url: string) {
     return this.sanitizer.bypassSecurityTrustHtml(url);
   }
 
-  createHyperlinksOfSection(){
-    let regEx=/§\d+-\d+(\.\d+)*/;
-    this.section.allTexts=[];
-    for (var a=0;a<this.section.text.length;a++){
-      let txt=this.section.text[a];
-      txt=txt.replace(regEx,"<a class='link-statue' chapter-hyper=\"$&\" onclick=\"callFromLink('$&');\">$&</a>");
+  createHyperlinksOfSection() {
+    let regEx = /§\d+-\d+(\.\d+)*/;
+    this.section.allTexts = [];
+    for (var a = 0; a < this.section.text.length; a++) {
+      let txt = this.section.text[a];
+      txt = txt.replace(regEx, "<a class='link-statue' chapter-hyper=\"$&\" onclick=\"callFromLink('$&');\">$&</a>");
       this.section.allTexts.push(txt);
     }
   }
 
-  addToBookmark(){
+  shareStatue(){
+    (<any>window).shareText(this.section.url);
+  }
+
+  addToBookmark() {
     this.server.addToBookmark(this.section);
-    this.bookmarked=true;
-    this.section.bookmarked=this.bookmarked;
+    this.bookmarked = true;
+    this.section.bookmarked = this.bookmarked;
   }
 
-  removeFromBookmark(){
+  removeFromBookmark() {
     this.server.removeFromBookmark(this.section);
-    this.bookmarked=false;
-    this.section.bookmarked=this.bookmarked;
+    this.bookmarked = false;
+    this.section.bookmarked = this.bookmarked;
   }
 
-  moveNext(){
-    if (this.sectionsList!=null){
-      if (this.currentSecIndex<(this.sectionsList.length-1)){
+  moveNext() {
+    if (this.sectionsList != null) {
+      if (this.currentSecIndex < (this.sectionsList.length - 1)) {
         this.currentSecIndex++;
-        if (this.isFromSearch){
+        if (this.isFromSearch) {
           this.loadSection(this.sectionsList[this.currentSecIndex]._id);
-        }else{
-          this.section=this.sectionsList[this.currentSecIndex];
+        } else {
+          this.section = this.sectionsList[this.currentSecIndex];
           this.createHyperlinksOfSection();
         }
       }
     }
   }
 
-  movePrev(){
-    if (this.sectionsList!=null){
-      if (this.currentSecIndex>0){
+  movePrev() {
+    if (this.sectionsList != null) {
+      if (this.currentSecIndex > 0) {
         this.currentSecIndex--;
-        if (this.isFromSearch){
+        if (this.isFromSearch) {
           this.loadSection(this.sectionsList[this.currentSecIndex]._id);
-        }else{
-          this.section=this.sectionsList[this.currentSecIndex];
+        } else {
+          this.section = this.sectionsList[this.currentSecIndex];
           this.createHyperlinksOfSection();
         }
       }

@@ -16,7 +16,7 @@
     &#167;{{section.chapter}}-{{section.section}}&nbsp;{{section.section_text}}
   </h5>
   <div id="statue-markdown" class="show-list-numbers-and-dots">
-    <p *ngFor="let txt of section.text" [innerHTML]="sanitize(txt)">
+    <p *ngFor="let txt of section.allTexts" [innerHTML]="sanitize(txt)">
     </p>
   </div>
 </ion-content>
@@ -25,6 +25,7 @@
     <ion-title>
       <ion-icon name="ios-bookmark-outline" color="dark" *ngIf="!section.bookmarked" (tap)="addToBookmark()"></ion-icon>
       <ion-icon name="ios-bookmark" color="dark" style="color:#454545;" *ngIf="section.bookmarked" (tap)="removeFromBookmark()"></ion-icon>
+      <ion-icon name="share-alt" color="dark" style="color:#454545;" (tap)="shareStatue()"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-footer>
