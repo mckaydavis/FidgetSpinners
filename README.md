@@ -5,7 +5,7 @@ When we designed and implemented this application, we wanted to make this more t
 
 The HRS App takes into account the following issues:
 
-* Can't effectively search the HRS.
+* Can't effectively search the current HRS.
 * Can't find cross references in the HRS.
 * Difficult to search for statutes located on signs around Hawaii.
 * Not knowing what laws are relavant to your location.
