@@ -52,6 +52,10 @@ You can select it to reveal information about it as well.
 
 ![cross_reference_result](./docs/photos/cross_reference_result.png)
 ### Taking a Pic
+This feature allows the user to quickly snap a photo on their mobile device and our image recognition software will redirect the user to a found statute.
+
+![ocr_demo](./docs/photos/ocr.gif)
+
 ### Searching nearby Laws
 ## Installation
 Select the 'client' or 'server' directory to see respective installation instructions.
