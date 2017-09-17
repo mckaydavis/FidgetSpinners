@@ -19,6 +19,7 @@ function shareText(txt) {
         },
         type: 'text/plain'
       },
+      function(){},
       function (msg) {
         alert('Error: ' + msg)
       }
