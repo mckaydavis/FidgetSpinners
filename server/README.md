@@ -1,24 +1,38 @@
-# HRS App API
-NodeJS API for the Hawai Revised Statutes App. API includes access to statute document data store and HRS search engine.
+# HRS API
+NodeJS API for the Hawaii Revised Statutes App. API includes access to statute data store and HRS search engine.
 ## Getting Started
-Theses instructions will get you started with setting the server locally. See deployment notes for instructions on how to set this up on a live system.
+These instructions will get you started with setting up the server.
 ### Prerequisites 
 #### Software
 [NodeJS v8.5](https://nodejs.org/en/)<br>
 [MongoDB v3.4](https://www.mongodb.com/download-center)<br>
 [Elasticsearch v5.5](https://www.elastic.co/products/elasticsearch)<br>
 #### Environment Variables
-MONGO_URI=mongodb://username:pass@host/hrs?authSource=admin<br>
-Reference to [mongo uri format](https://docs.mongodb.com/manual/reference/connection-string/)<br>
+MONGO_URI=mongodb://username:pass@host/hrs?authSource=admin
 ELASTIC_URI=*the_uri_for_your_elastic_search_instance*<br>
+#### Importing sample data
+##### Mongo
+First create 'hrs' database and create 'hrs-locations' collection. After that, run the load script in setup/mongo.
+```
+cd /setup/mongo
+chmod +x load.sh
+./load.sh
+```
+##### Elasticsearch
+Run load script in setup/elastic
+```
+cd /setup/elastic
+chmod +x load.sh
+./load.sh
+```
 #### Installing
-To install the server, run...
+To install the server
 ```
 sudo npm install forever -g
 npm install
 npm start
 ```
-## API
+## API Usage
 List of URL options for getting documents.
 ### Get Documents
 #### Get by division
