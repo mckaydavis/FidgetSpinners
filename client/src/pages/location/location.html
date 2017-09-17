@@ -12,15 +12,17 @@
 </ion-header>
 
 <ion-content padding id="page12">
-  <ion-list id="section-list10">
-    <ion-item color="none" on-click="goToStatue()" id="section-list-item25">
-      §1-1 Common law of the State; exceptions
-    </ion-item>
-    <ion-item color="none" id="section-list-item26">
-      §1-2 Common law of the State; exceptions
-    </ion-item>
-    <ion-item color="none" id="section-list-item27">
-      §1-3 Common law of the State; exceptions
-    </ion-item>
+  <ion-list no-lines id="section-list10">
+    <ion-grid>
+
+      <!--ion-list goes here -->
+
+    </ion-grid>
   </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>
