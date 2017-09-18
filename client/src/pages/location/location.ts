@@ -21,8 +21,11 @@ export class LocationPage {
   private allSections: any[] = null;
   private sections: any[] = [];
   private loadingSections: boolean = false;
-  private section: any = null;
   private jsonResLength: number;
+  private lat: number;
+  private lon: number;
+  private distances: number[];
+  private distance: string;
 
   goToStatue(params) {
     if (!params) params = {};
@@ -31,16 +34,16 @@ export class LocationPage {
 
   getLocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
-      // resp.coords.latitude
-      // resp.coords.longitude
+      this.lat = resp.coords.latitude
+      this.lon = resp.coords.longitude
     }).catch((error) => {
       console.log('Error getting location', error);
     });
 
     let watch = this.geolocation.watchPosition();
     watch.subscribe((data) => {
-      // data.coords.latitude
-      // data.coords.longitude
+      this.lat = data.coords.latitude
+      this.lon = data.coords.longitude
     });
   }
 
@@ -57,17 +60,18 @@ export class LocationPage {
   openSection(sec) {
     var self = this;
     /*
-    (self.server).getStatute(id)
-      .map(response => response.json()).subscribe(result => {
-      self.section = result
-*/
-      setTimeout(function () {
-        self.navCtrl.push(StatuePage, {section: sec});
-      }, 200);
+     (self.server).getStatute(id)
+     .map(response => response.json()).subscribe(result => {
+     self.section = result
+     */
+    setTimeout(function () {
+      self.navCtrl.push(StatuePage, {section: sec});
+    }, 200);
 
   }
 
   sectionsSuccess(res: Response) {
+    this.distances = [];
     this.allSections = [];
     this.sections = [];
     this.loadingSections = false;
@@ -75,12 +79,24 @@ export class LocationPage {
       let jsonRes = res.json();
       this.jsonResLength = jsonRes.length;
       for (var a = 0; a < this.jsonResLength; a++) {
-        let js=jsonRes[a];
-        js.bookmarked=this.server.isInBookmark(js);
+        let js = jsonRes[a];
+        js.bookmarked = this.server.isInBookmark(js);
         this.allSections.push(js);
         if (a < 15) {
           this.sections[a] = this.allSections[a];
-          console.log(this.sections[a]);
+
+          try {
+            this.getLocation();
+            this.sections[a].distance = this.locationServer.getDistanceBetweenInKm(this.lon, this.lat,
+            this.sections[a].x, this.sections[a].y);
+          }catch(e) {
+            this.sections[a].distance = this.locationServer.getDistanceBetweenInKm(21.2952, -157.8136,
+            this.sections[a].x, this.sections[a].y);
+          }
+
+          this.distance = this.sections[a].distance.toString();
+          this.distance = this.distance.substring(0,4);
+          this.sections[a].distance = parseFloat(this.distance);
         }
       }
     } catch (e) {
