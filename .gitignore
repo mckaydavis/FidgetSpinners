@@ -209,6 +209,9 @@ _site/
 Gemfile
 Gemfile.lock
 
+### npm stuff
+package-lock.json
+
 # End of https://www.gitignore.io/api/vim,node,macos,intellij,sublimetext,visualstudiocode
 
 *.iml
