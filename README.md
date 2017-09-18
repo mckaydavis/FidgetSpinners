@@ -56,7 +56,11 @@ This feature allows the user to quickly snap a photo on their mobile device and 
 
 ![ocr_demo](./docs/photos/ocr.gif)
 
-### Searching nearby Laws
+### Searching nearby Statutes
+This feature allows the user to use their location to view nearby laws. These laws are generated from signs that have been successfully scanned with our application.
+
+![search_nerby](./docs/photos/location.gif)
+
 ## Installation
 Select the 'client' or 'server' directory to see respective installation instructions.
 
