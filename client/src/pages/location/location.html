@@ -15,7 +15,18 @@
   <ion-list no-lines id="section-list10">
     <ion-grid>
 
-      <!--ion-list goes here -->
+      <ion-item *ngFor="let sec of sections;let idx=index;" color="none" id="section-list-item26"
+                attr.id={{sec._id}} (tap)="openSection(sec.statute)">
+        <ion-row>
+          <ion-col col-11 class="section_text">
+            &#167;{{sec.statute.chapter}}-{{sec.statute.section}}&nbsp;{{sec.statute.section_text}}
+          </ion-col>
+          <ion-col col-1>
+            <ion-icon name="ios-bookmark-outline" *ngIf="!sec.bookmarked"></ion-icon>
+            <ion-icon name="ios-bookmark" style="color:#454545;" *ngIf="sec.bookmarked"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item>
 
     </ion-grid>
   </ion-list>

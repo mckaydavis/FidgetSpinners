@@ -1,14 +1,15 @@
 'use strict';
-let mongoose = require('mongoose'),
-	Statute = mongoose.model('Statute')
 
+let mongoose = require('mongoose'),
+	Statute = mongoose.model('Statute'),
+	cache = require('memory-cache');
 
 exports.listAllStatutes = function(req, res) {
-  Statute.find({}, function(err, statute) {
-    if (err)
-      res.send(err);
-    res.json(statute);
-  });
+	Statute.find({}, function(err, statute) {
+		if (err)
+			res.send(err);
+		res.json(statute);
+	});
 };
 
 exports.listByDivision = function(req, res) {
@@ -56,6 +57,14 @@ exports.listByChapter = function(req, res) {
 exports.listByChapterSection = function(req, res) {
 	Statute.find({chapter: req.params.chapter, 
 		section: req.params.section}, function(err, statute) {
+		if (err)
+			res.send(err);
+		res.json(statute);
+	});
+};
+
+exports.getById = function(req, res) {
+	Statute.find({_id: req.query.val}, function(err, statute) {
 		if (err)
 			res.send(err);
 		res.json(statute);
