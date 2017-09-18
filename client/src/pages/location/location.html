@@ -12,10 +12,10 @@
 </ion-header>
 
 <ion-content padding id="page12">
-  <ion-list no-lines id="section-list10">
+  <p *ngIf="loadingSections"> loading</p>
+  <ion-list *ngIf="!loadingSections" id="section-list10">
     <ion-grid>
-
-      <ion-item *ngFor="let sec of sections;let idx=index;" color="none" id="section-list-item26"
+      <ion-item  *ngFor="let sec of sections;let idx=index;" color="none" id="section-list-item26"
                 attr.id={{sec._id}} (tap)="openSection(sec.statute)">
         <ion-row>
           <ion-col col-1>
