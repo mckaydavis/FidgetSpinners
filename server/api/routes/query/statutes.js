@@ -1,3 +1,5 @@
+'use strict';
+
 let express = require('express'),
     router  = express.Router();
 
@@ -9,5 +11,8 @@ router.route('/')
 	  
 router.route('/search')
     .get(ElasticSearch.searchDocs);
+
+router.route('/search/chaptersection')
+    .get(ElasticSearch.getChapterSection);
 	
 module.exports = router;

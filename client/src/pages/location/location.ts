@@ -54,9 +54,17 @@ export class LocationPage {
     infiniteScroll.complete();
   }
 
-  openSection(sec, id) {
+  openSection(sec) {
     var self = this;
-    self.navCtrl.push(StatuePage, {section: this.section});
+    /*
+    (self.server).getStatute(id)
+      .map(response => response.json()).subscribe(result => {
+      self.section = result
+*/
+      setTimeout(function () {
+        self.navCtrl.push(StatuePage, {section: sec});
+      }, 200);
+
   }
 
   sectionsSuccess(res: Response) {
@@ -67,39 +75,17 @@ export class LocationPage {
       let jsonRes = res.json();
       this.jsonResLength = jsonRes.length;
       for (var a = 0; a < this.jsonResLength; a++) {
-        let js = jsonRes[a];
-        js.bookmarked = this.server.isInBookmark(js);
+        let js=jsonRes[a];
+        js.bookmarked=this.server.isInBookmark(js);
         this.allSections.push(js);
         if (a < 15) {
           this.sections[a] = this.allSections[a];
+          console.log(this.sections[a]);
         }
       }
     } catch (e) {
       alert("Exception: " + e.message);
     }
-
-    for (var i = 0; i < this.allSections.length; i++) {
-      this.allSections[i] = this.convertLocationDataToStatutes(this.allSections[i]);
-    }
-
-    for (var i = 0; i < this.sections.length; i++) {
-      this.sections[i] = this.convertLocationDataToStatutes(this.sections[i]);
-      console.log(this.convertLocationDataToStatutes(this.sections[i]));
-    }
-  }
-
-  convertLocationDataToStatutes(data: any): any {
-    var self = this;
-    console.log(data.statute);
-    var chapterandsection = data.statute;
-    var values = chapterandsection.split('-');
-    var chapternumber = values[0];
-    var sectionnumber = values[1];
-
-    (self.server).getSection(chapternumber, sectionnumber)
-      .map(response => response.json()).subscribe(result => {
-      return result[0];
-    });
   }
 
   sectionsFailure(error: any) {
