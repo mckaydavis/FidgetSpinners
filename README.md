@@ -59,7 +59,8 @@ This feature allows the user to quickly snap a photo on their mobile device and 
 ### Searching nearby Laws
 ## Installation
 Select the 'client' or 'server' directory to see respective installation instructions.
-#####Installing APK outside of Google Play
+
+#### Installing APK outside of Google Play
 
 From your smartphone or tablet, go to Settings, scroll down to Security, and toggle Unknown sources. This option will allow you to install applications outside of the Google Play store.
 
