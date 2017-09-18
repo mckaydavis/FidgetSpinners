@@ -21,6 +21,7 @@ To emulate on an Android Emulator/Device to use all the features:
 
 1. Download Android Studio https://developer.android.com/studio/index.html
 2. in the client directory, use the commands:
+
 2a. `$ ionic cordova platform add android`
 
 2b. `$ ionic cordova build android `
