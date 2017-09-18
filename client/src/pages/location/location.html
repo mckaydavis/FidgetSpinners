@@ -19,10 +19,10 @@
       <ion-item  *ngFor="let sec of sections;let idx=index;" color="none" id="section-list-item26"
                 attr.id={{sec._id}} (tap)="openSection(sec.statute)">
         <ion-row>
-          <ion-col col-2>
+          <ion-col col-1>
             {{sec.distance}} km
           </ion-col>
-          <ion-col class="section_text">
+          <ion-col class="section_text" offset-2>
             &#167;{{sec.statute.chapter}}-{{sec.statute.section}}&nbsp;{{sec.statute.section_text}}
           </ion-col>
           <ion-col col-1>
