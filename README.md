@@ -81,6 +81,8 @@ To run the app with Ionic View:
 
 NOTE: There may be styling issues with ios as this app is intended to be for android, although functionality works the same.
 
+[![google_play](./docs/photos/badge_web.png)](https://play.google.com/store/apps/details?id=hrs.app.com)
+
 ## About HRS App development
 The HRS App was developed as part of the [2017 Hawaii Annual Code Challenge](http://hacc.hawaii.gov).
 
