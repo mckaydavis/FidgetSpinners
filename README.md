@@ -76,7 +76,9 @@ Open the file and install the app.
 
 #### Installing Ionic View
 We did not release the app on the app store for ios, however you can still run the app using ionic view.
-To run the app with Ionic View, enter the code d01eb1e4.
+To run the app with Ionic View:
+1. Download Ionic View from the app store
+2. enter the code d01eb1e4.
 
 NOTE: There may be styling issues with ios as this app is intended to be for android, although functionality works the same.
 
