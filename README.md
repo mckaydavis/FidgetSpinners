@@ -62,12 +62,19 @@ Select the 'client' or 'server' directory to see respective installation instruc
 
 #### Installing APK outside of Google Play
 
+Download [link](https://drive.google.com/open?id=0B0pMgyZ-wbx1bzNpRXFuWUR6R2M)
+
 From your smartphone or tablet, go to Settings, scroll down to Security, and toggle Unknown sources. This option will allow you to install applications outside of the Google Play store.
 
 The next step will be finding the .apk file in the directory it was saved in; or download a APK Installer from the Google Play Store to
 automatically fetch the Android package file.
 
 Open the file and install the app.
+#### Installing Ionic View
+
+To run the app with Ionic View, enter the code d01eb1e4.
+
+NOTE: There may be styling issues with ios.
 ## About HRS App development
 The HRS App was developed as part of the [2017 Hawaii Annual Code Challenge](http://hacc.hawaii.gov).
 
