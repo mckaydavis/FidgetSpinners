@@ -1,5 +1,4 @@
-# The HRS App
-*More than just a search engine.*
+![feature](./docs/photos/HRS_feature.png)
 
 When we designed and implemented this application, we wanted to make this more than a traditional search. We wanted to create an app that could effectively search the current Hawaii Revised Statutes in a way that was new and innovative. Our goal for this app was to echo the very essence of being more than a search engine. As result, we created a new experience for the user. 
 
