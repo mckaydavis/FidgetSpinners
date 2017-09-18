@@ -62,10 +62,9 @@ This feature allows the user to use their location to view nearby laws. These la
 ![search_nerby](./docs/photos/location.gif)
 
 ## Installation
-Select the 'client' or 'server' directory to see respective installation instructions.
+Select the 'client' or 'server' directory to see respective local installation instructions.
 
 #### Installing APK outside of Google Play
-
 Download [link](https://drive.google.com/open?id=0B0pMgyZ-wbx1bzNpRXFuWUR6R2M)
 
 From your smartphone or tablet, go to Settings, scroll down to Security, and toggle Unknown sources. This option will allow you to install applications outside of the Google Play store.
@@ -74,11 +73,13 @@ The next step will be finding the .apk file in the directory it was saved in; or
 automatically fetch the Android package file.
 
 Open the file and install the app.
-#### Installing Ionic View
 
+#### Installing Ionic View
+We did not release the app on the app store for ios, however you can still run the app using ionic view.
 To run the app with Ionic View, enter the code d01eb1e4.
 
-NOTE: There may be styling issues with ios.
+NOTE: There may be styling issues with ios as this app is intended to be for android, although functionality works the same.
+
 ## About HRS App development
 The HRS App was developed as part of the [2017 Hawaii Annual Code Challenge](http://hacc.hawaii.gov).
 
