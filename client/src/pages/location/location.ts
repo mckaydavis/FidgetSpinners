@@ -96,7 +96,7 @@ export class LocationPage {
               this.lat = resp.coords.latitude
               this.lon = resp.coords.longitude
 
-              this.sections[a].distance = this.locationServer.getDistanceBetweenInKm(this.lon, this.lat,
+              this.sections[a].distance = this.locationServer.getDistanceBetweenInKm(this.lat, this.lon,
               this.sections[a].x, this.sections[a].y);
 
 
