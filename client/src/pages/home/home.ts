@@ -153,7 +153,7 @@ export class HomePage {
           this.geolocation.getCurrentPosition().then((resp) => {
             let lat = resp.coords.latitude,
                 long = resp.coords.longitude,
-                statute = section[0]["chapter"] + '-' + section[0]["section"];
+                statute = section[0];
 
             this.location.postLocation(lat, long, statute).subscribe();
 
