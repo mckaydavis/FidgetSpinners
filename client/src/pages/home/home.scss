@@ -1,14 +1,46 @@
 page-home {
+  background-image: url('../assets/img/foilage_green2.jpg');
+  background-size: 100%;
 
-  .spacer {
-    width: 300px;
-    height: 15px;
+
+  .searchbar-md {
+
   }
 
-  #home-container {
-    button {
-      width: 70%
+
+  .toolbar-title {
+    color: #fff;
+    text-align: center;
+    font-size: 100px;
+    font-weight: 300;
+
+    .subtitle {
+      font-size: 17%;
+      font-weight: 400;
+      margin: 0;
     }
   }
+
+  #home-search {
+    padding-left: .5%;
+
+    .item-md{
+      padding-left: 0px;
+    }
+
+    .item-ios{
+      padding-left: 0px;
+    }
+       .item-inner {
+      padding-right: 0;
+    }
+  }
+
+  #home-option {
+    .item-inner {
+      padding-right: 0;
+    }
+  }
+
 
 }
