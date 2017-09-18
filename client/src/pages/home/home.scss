@@ -7,20 +7,6 @@ page-home {
 
   }
 
-  #menu-list ion-icon {
-    color: #4C4C4C;
-  }
-
-  #menu-list {
-    height: 100%;
-    display: block;
-    vertical-align: middle;
-  }
-
-  #hrs-title {
-    font-weight: 100;
-    font-size: 40px;
-  }
 
   .toolbar-title {
     color: #fff;
@@ -35,38 +21,26 @@ page-home {
     }
   }
 
-  #hrs-subtitle {
-    font-weight: normal;
-    font-size: 20px;
-    color: white;
-    text-align: center;
+  #home-search {
+    padding-left: .5%;
+
+    .item-md{
+      padding-left: 0px;
+    }
+
+    .item-ios{
+      padding-left: 0px;
+    }
+       .item-inner {
+      padding-right: 0;
+    }
   }
 
-/*  ion-searchbar{
-    width: 85%;
-    margin: 0 auto;
-  }*/
-
-  .home-menu{
-    bottom: 3.5em;
+  #home-option {
+    .item-inner {
+      padding-right: 0;
+    }
   }
 
-  .spacer {
-    width: 300px;
-    height: 20px;
-  }
 
-  .option-button {
-    font-size: 1em;
-    font-weight: 100;
-    text-transform: none;
-    height: 25%;
-    width: 75%;
-    margin: 4%;
-    padding: 7px;
-  }
-
-  .list-md {
-    margin: 0;
-  }
 }
