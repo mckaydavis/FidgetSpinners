@@ -1,33 +1,40 @@
+# Hawaii Revised Statutes App
+
+## Installation and Starting
 To install ionic, use the commands:
 
-$ sudo npm install -g cordova
-$ sudo npm install -g ionic
-$ npm install
+`$ sudo npm install -g cordova`
+`$ sudo npm install -g ionic`
+`$ npm install`
 
 Then cd to the client directory
 
-$ ionic serve
+To start the app, simply type
+$ `ionic serve`
+But please note that the camera function is disable for this option as well as ios styling. (This is intended to be an Android application). ios styling issues may arise using ionic serve.
 
-To emulate on an Android Emulator/Device:
+
+### Emulating on Android Studio 
+To emulate on an Android Emulator/Device to use all the features:
 
 1. Download Android Studio https://developer.android.com/studio/index.html
 2. in the client directory, use the commands:
-2a. $ ionic cordova platform add android
-2b. $ ionic cordova build android 
-2c. $ ionic cordova emulate android or 'ionic cordova run android' if you have an android device plugged in
+2a. `$ ionic cordova platform add android`
+2b. `$ ionic cordova build android `
+2c. `$ ionic cordova emulate android` or `ionic cordova run android` if you have an android device plugged in
 
 
-3. If you receive an error in step 2c, follow this step: 
+3.  If you receive an error in step 2c, follow this step: 
 3a. Open Android Studio.
 3b. Click 'Open an existing Android Studio project'
 3c. Navigate to 'hrs-app/client/platforms/android' and open it
-3d. In the project tab, navigate to 'android/com/cordovaplugincamerapreview/' and click any of the classes
+3d  Create an AVD, if you dont have one already using AVD Manager in Android Studio
 3e. The Run button (green triangle) should be activated, click it
 3f. Set the operating system to Android 7.0 Nougat, and choose a device that can run the OS (e.g. Google Pixel)
 3g. Close Android Studio and repeat step 2c.
 
 
-Building the Android Project into an APK file:
+### Building the Android Project into an APK file:
 
 1. Customize the config.xml based on desired build settings, it can be found in /platforms/android/res
 2. In the client directory, use the command:
