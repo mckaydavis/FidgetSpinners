@@ -1,37 +1,91 @@
-<ion-header>
-    <ion-navbar>
-        <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-        </button>
-        <ion-title>
-            <div class="spacer" style="width:300px;height:25px;"></div>
-            <h1>HRS</h1>
-            <h5>Hawaii Revised Statutes</h5>
-            <ion-searchbar class="headbar" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)">
-            </ion-searchbar>
-        </ion-title>
-        <div class="spacer" style="width:300px;height:60px;"></div>
-    </ion-navbar>
-</ion-header>
-<ion-content class="home" padding id="page1">
-    <form id="home-form">
-        <div id="home-container" text-center>
-            <div class="spacer"></div>
-            <button ion-button round outline color="dark" on-click="goToDivision()">
-                Browse
-            </button>
-            <div class="spacer"></div>
-            <button ion-button round outline color="dark">
-                Laws Near You
-            </button>
-            <div class="spacer"></div>
-            <button ion-button round outline color="dark">
-                Take a picture
-            </button>
-            <div class="spacer"></div>
-            <button ion-button round outline color="dark">
-                Upload a picture
-            </button>
-        </div>
-    </form>
-</ion-content>
+<ion-grid>
+
+  <ion-row>
+    <ion-col text-right>
+    <button style="background: transparent;" icon-only ion-button menuToggle>
+      <ion-icon style="color: white;" name="menu"></ion-icon>
+    </button>
+  </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col text-center>
+      <ion-title> 
+        HRS 
+        <p class="subtitle"> Hawaii Revised Statutes </p>
+      </ion-title>
+    </ion-col>
+  </ion-row>
+
+  <ion-row> 
+    <ion-col style="margin-left: 5%; margin-right: 5%">
+      <ion-item id="home-search" style="background: transparent; border-bottom-color: white">
+        <ion-label style="color: white;" floating>Search</ion-label>
+        <ion-input class="search" style="color: white; border-bottom-color: white" type="search" (change)="goToSearch($event)" [(ngModel)]="searchQuery" (ionCancel)="onCancel($event)"></ion-input>
+        <ion-icon class="input-icons" style="color: white; margin-bottom: -5%; font-size: 2.6rem; float:right;" item-end name="md-search"></ion-icon>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+
+  <div style="position: absolute; bottom: 5%; right: 2%; width: 100%">
+    <div style="text-align: center">
+  <ion-row> 
+    <ion-col>
+      <ion-item id="home-option" style="background: transparent;" on-click="goToDivision()">
+        <ion-row>
+          <ion-col col-1 text-center>
+            <ion-icon class="input-icons" style="color: white;" name="md-folder"></ion-icon>
+          </ion-col>
+          <ion-col col-10 text-left>
+            <p style="color: white;"> Browse </p>
+          </ion-col>
+          <ion-col text-right>
+            <ion-icon style="color: white;" name="ios-arrow-forward"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row> 
+    <ion-col>
+      <ion-item id="home-option" style="background: transparent;" on-click="goToCamera()">
+        <ion-row>
+          <ion-col col-1 text-center>
+            <ion-icon class="input-icons" style="color: white;" name="md-camera"></ion-icon>
+          </ion-col>
+          <ion-col col-10 text-left>
+            <p style="color: white;"> Take a Picture </p>
+          </ion-col>
+          <ion-col text-right>
+            <ion-icon style="color: white;" name="ios-arrow-forward"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+
+
+  <ion-row> 
+    <ion-col>
+      <ion-item id="home-option" style="background: transparent;" on-click="goToLocation()">
+        <ion-row>
+          <ion-col col-1 text-center>
+            <ion-icon class="input-icons" style="color: white;" name="md-pin"></ion-icon>
+          </ion-col>
+          <ion-col col-10 text-left>
+            <p style="color: white;"> Near You </p>
+          </ion-col>
+          <ion-col text-right>
+            <ion-icon style="color: white;" name="ios-arrow-forward"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  
+    </div>
+  </div>
+</ion-grid>

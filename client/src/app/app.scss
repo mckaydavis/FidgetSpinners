@@ -14,21 +14,20 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+.toolbar-background {
+  background-image: url('../assets/img/foilage_green2.jpg');
+  background-size: 100%;
+}
+
 .toolbar-title {
   color: #fff;
   text-align: center;
 }
 
-ion-avatar img {
-  width: 40% !important;
-  height: 40% !important;
-  margin: auto;
+.bar-button-default-md {
+  color: white;
 }
 
-//hide scrollbar for side menu
-::-webkit-scrollbar {
-  display: none;
-}
 
 // side menu
 #menu-list {
@@ -39,6 +38,11 @@ ion-avatar img {
   }
 }
 
-.menu-icon {
-  color: white;
+//active-highlight on menu items
+.activeHighlight {
+  background-color: rgba(34, 34, 34, 0.4) !important;
+}
+
+.link-statue{
+  color: #0000ff;
 }

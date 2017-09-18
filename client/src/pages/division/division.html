@@ -1,23 +1,25 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-title>
+        Browse
+      </ion-title>
+    <ion-buttons end>
+    <button style="background: transparent;" icon-only ion-button menuToggle>
+      <ion-icon style="color: white;" name="menu"></ion-icon>
     </button>
-    <ion-title>
-      Division
-    </ion-title>
+  </ion-buttons>
   </ion-navbar>
 </ion-header>
+
 <ion-content padding id="page">
   <ion-list id="division-list">
-    <ion-item color="none" on-click="goToTitle()" id="division-list-item16">
-      Division 1 - Government
-    </ion-item>
-    <ion-item color="none" id="division-list-item">
-      Division 2 - Business
-    </ion-item>
-    <ion-item color="none" id="division-list-item">
-      Division 3 - Property; Family
+    <ion-row>
+      <ion-col text-center>
+        <h5 style="text-align: center; font-weight: normal;"> Divisions </h5>
+      </ion-col>
+    </ion-row>
+    <ion-item *ngFor="let div of divisions" color="none" (tap)="openDivision(div)" id="division-list-item16">
+      {{div.name}}
     </ion-item>
   </ion-list>
 </ion-content>

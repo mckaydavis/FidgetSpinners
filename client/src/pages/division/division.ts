@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { TitlePage } from '../title/title';
-import { ChapterPage } from '../chapter/chapter';
-import { SectionPage } from '../section/section';
-import { StatuePage } from '../statue/statue';
+import { AppServer } from '../../services/appserver';
+import { Response } from '@angular/http';
 
 @Component({
   selector: 'page-division',
@@ -11,19 +10,40 @@ import { StatuePage } from '../statue/statue';
 })
 export class DivisionPage {
 
-  constructor(public navCtrl: NavController) {
+  private divisions: any[] = null;
+
+  constructor(public navCtrl: NavController,public server: AppServer) {
+    this.divisions=[];
+    this.loadLocalJson();
   }
-  goToTitle(params){
-    if (!params) params = {};
-    this.navCtrl.push(TitlePage);
-  }goToChapter(params){
-    if (!params) params = {};
-    this.navCtrl.push(ChapterPage);
-  }goToSection(params){
-    if (!params) params = {};
-    this.navCtrl.push(SectionPage);
-  }goToStatue(params){
-    if (!params) params = {};
-    this.navCtrl.push(StatuePage);
+
+  goBack(){
+    this.navCtrl.pop();
+  }
+  
+  openDivision(div){
+    this.navCtrl.push(TitlePage,{division: div});
+  }
+
+  addMealSuccess(res: Response){
+    try{
+      let jsonRes=res.json();
+      for (var a=0;a<jsonRes.length;a++){
+        this.divisions.push(jsonRes[a]);
+      }
+    }catch(e){
+      alert("Exception: "+e.message);
+    }
+  }
+
+  addMealFailure(error: any){
+    alert('Error: '+JSON.stringify(error));
+  }
+
+  loadLocalJson(){
+    let that=this;
+    this.server.getLocalJsonTree().subscribe(
+      res=>that.addMealSuccess(res),err=>that.addMealFailure(err)
+    );
   }
 }
