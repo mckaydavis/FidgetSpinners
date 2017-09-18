@@ -1,5 +1,7 @@
 # HRS API
 NodeJS API for the Hawaii Revised Statutes App. API includes access to statute data store and HRS search engine.
+
+NOTE: This is not required to run the client. The client already has the api url that we built.
 ## Getting Started
 These instructions will get you started with setting up the server.
 ### Prerequisites 
