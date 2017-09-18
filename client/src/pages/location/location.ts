@@ -26,6 +26,7 @@ export class LocationPage {
   private lon: number;
   private distances: number[];
   private distance: string;
+  private buffer: any[]= [];
 
   goToStatue(params) {
     if (!params) params = {};
@@ -74,6 +75,7 @@ export class LocationPage {
     console.log('sectionssuccess');
     this.distances = [];
     this.allSections = [];
+    this.buffer = [];
     this.sections = [];
 
 
@@ -90,28 +92,31 @@ export class LocationPage {
         this.allSections.push(js);
 
         if (a < 15) {
-          this.sections[a] = this.allSections[a];
+          this.buffer[a] = this.allSections[a];
 
           try {
               this.lat = resp.coords.latitude
               this.lon = resp.coords.longitude
 
-              this.sections[a].distance = this.locationServer.getDistanceBetweenInKm(this.lat, this.lon,
-              this.sections[a].x, this.sections[a].y);
+              this.buffer[a].distance = this.locationServer.getDistanceBetweenInKm(this.lat, this.lon,
+              this.buffer[a].x, this.buffer[a].y);
 
-
-              this.distance = this.sections[a].distance.toString();
+              this.distance = this.buffer[a].distance.toString();
               this.distance = this.distance.substring(0,4);
-              this.sections[a].distance = parseFloat(this.distance);
+              this.buffer[a].distance = parseFloat(this.distance);
 
               console.log(this.distance)
 
           }catch(e) {
-            this.sections[a].distance = this.locationServer.getDistanceBetweenInKm(21.2952, -157.8136,
-            this.sections[a].x, this.sections[a].y);
+            this.buffer[a].distance = this.locationServer.getDistanceBetweenInKm(21.2952, -157.8136,
+            this.buffer[a].x, this.buffer[a].y);
             this.loadingSections = false;
 
           }
+
+         if(this.buffer[a].distance <= 1) {
+            this.sections.push(this.buffer[a]);
+         }
 
         }
       }
