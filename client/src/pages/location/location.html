@@ -12,9 +12,10 @@
 </ion-header>
 
 <ion-content padding id="page12">
-  <p *ngIf="loadingSections"> loading</p>
+  <p style="text-align: center;" *ngIf="loadingSections"> loading</p>
   <ion-list *ngIf="!loadingSections" id="section-list10">
     <ion-grid>
+      <ion-col text-center *ngIf="isEmpty"> There are no reported statutes near you. </ion-col>
       <ion-item  *ngFor="let sec of sections;let idx=index;" color="none" id="section-list-item26"
                 attr.id={{sec._id}} (tap)="openSection(sec.statute)">
         <ion-row>

@@ -21,6 +21,7 @@ export class LocationPage {
   private allSections: any[] = null;
   private sections: any[] = [];
   private loadingSections: boolean = true;
+  private isEmpty: boolean = false;
   private jsonResLength: number;
   private lat: number;
   private lon: number;
@@ -79,7 +80,7 @@ export class LocationPage {
     this.sections = [];
 
 
-    this.geolocation.getCurrentPosition({enableHighAccuracy: true}).then((resp) => {
+    this.geolocation.getCurrentPosition({enableHighAccuracy: true, timeout: 5000}).then((resp) => {
 
       console.log("getting position");
     try {
@@ -105,7 +106,6 @@ export class LocationPage {
               this.distance = this.distance.substring(0,4);
               this.buffer[a].distance = parseFloat(this.distance);
 
-              console.log(this.distance)
 
           }catch(e) {
             this.buffer[a].distance = this.locationServer.getDistanceBetweenInKm(21.2952, -157.8136,
@@ -122,12 +122,17 @@ export class LocationPage {
       }
 
       this.loadingSections = false;
+      if (this.sections.length == 0) {
+        this.isEmpty = true;
+      }
+
     } catch (e) {
       this.loadingSections = false;
       alert("Exception: " + e.message);
     } this.loadingSections = false;
     }).catch((error) => {
-      console.log('Error getting location', error);
+      this.loadingSections = false;
+      this.isEmpty = true;
     });
 
   }
