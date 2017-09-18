@@ -77,7 +77,7 @@ export class LocationPage {
     this.sections = [];
 
 
-    this.geolocation.getCurrentPosition().then((resp) => {
+    this.geolocation.getCurrentPosition({enableHighAccuracy: true}).then((resp) => {
 
       console.log("getting position");
     try {

@@ -150,7 +150,7 @@ export class HomePage {
 
           // Post the location of this found section to the REST API
           // for use with Near You functionality
-          this.geolocation.getCurrentPosition().then((resp) => {
+          this.geolocation.getCurrentPosition({enableHighAccuracy: true}).then((resp) => {
             let lat = resp.coords.latitude,
                 long = resp.coords.longitude,
                 statute = section[0];
